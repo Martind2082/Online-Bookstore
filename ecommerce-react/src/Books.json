@@ -1,0 +1,32 @@
+{
+    "books" : [
+        {
+            "title": "The Fault In Our Stars",
+            "body": "The Fault in Our Stars debuted at #1 on the New York Times bestseller list and was chosen as TIME Magazine’s #1 Fiction Book of 2012. Hazel Grace Lancaster, a 16-year-old cancer patient, meets and falls in love with Gus Waters, a similarly afflicted teen from her cancer support group. Hazel feels that Gus really understands her. They both share the same acerbic wit and a love of books. When Gus scores an invitation to meet the reclusive author, he and Hazel embark on the adventure of their brief lives",
+            "author": "John Green",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/81a4kCNuH+L.jpg",
+            "id": 1
+        },
+        {
+            "title": "The Hunger Games",
+            "body": "In what was once North America, the Capitol of Panem maintains its hold on its 12 districts by forcing them each to select a boy and a girl, called Tributes, to compete in a nationally televised event called the Hunger Games. Every citizen must watch as the youths fight to the death until only one remains. District 12 Tribute Katniss Everdeen has little to rely on, other than her hunting skills and sharp instincts, in an arena where she must weigh survival against love.",
+            "author": "Suzanne Collins",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586722975l/2767052.jpg",
+            "id": 2
+        },
+        {
+            "title": "The Alchemist",
+            "body": "The Alchemist is a classic novel in which a boy named Santiago embarks on a journey seeking treasure in the Egyptian pyramids after having a recurring dream about it and on the way meets mentors, falls in love, and most importantly, learns the true importance of who he is and how to improve himself",
+            "author": "Paulo Coelho",
+            "image": "https://m.media-amazon.com/images/I/51Z0nLAfLmL.jpg",
+            "id": 3
+        },
+        {
+            "title": "Rich Dad Poor Dad",
+            "body": "Rich Dad Poor Dad tells the story of a boy with two fathers, one rich, one poor, to help you develop the mindset and financial knowledge you need to build a life of wealth and freedom.",
+            "author": "Robert Kiyosaki",
+            "image": "https://i1.wp.com/www.samuelthomasdavies.com/wp-content/uploads/2017/08/Rich-Dad-Poor-Dad-Summary.png?fit=522%2C778&ssl=1",
+            "id": 4
+        }
+    ]
+}

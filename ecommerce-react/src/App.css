@@ -1,0 +1,53 @@
+* {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+}
+#header {
+  height: 10vh;
+  width: 100%;
+  background-color: rgb(98, 98, 235);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 2rem;
+}
+#header img {
+  height: 50px;
+  width: 50px;
+}
+#left {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
+#cartContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 80%;
+}
+#cartcount {
+  align-self: start;
+  height: 50%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+}
+div:hover, p:hover {
+  cursor: pointer;
+}
