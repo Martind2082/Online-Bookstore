@@ -1,10 +1,11 @@
 import reading from './Images/reading.png';
 import backward from './Images/back.png';
 import forward from './Images/forward.png';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useEffect } from 'react';
 const Home = ({books}) => {
-    let circles = document.getElementById('circles');
     const [counter, setCounter] = useState(0);
+    const circles = useRef();
     function front() {
         if (counter === 3) {
             return 0;
@@ -17,15 +18,18 @@ const Home = ({books}) => {
         }
         return counter - 1;
     }
-    for (let i = 0; i < 4; i++) {
-        circles.children[i].style.backgroundColor = 'rgb(193, 189, 189)';
-    }
-    circles.children[counter].style.backgroundColor = 'orange';
+    useEffect(() => {
+        console.log(circles.current);
+        for (let i = 0; i < 4; i++) {
+            circles.current.children[i].style.backgroundColor = 'rgb(193, 189, 189)';
+        }
+        circles.current.children[counter].style.backgroundColor = 'orange';
+    }, [counter])
     return ( 
         <div>
             <div id='welcome'>
-                <p style={{fontSize: "3rem", height: '1rem', fontWeight: 'bold'}}>Welcome to the Library!</p>
-                <p style={{fontSize: '2rem'}}>Find your dream book with Library</p>
+                <p style={{fontSize: "3rem", height: '1rem', fontWeight: 'bold'}}>Welcome to the Bookstore!</p>
+                <p style={{fontSize: '2rem'}}>Find your dream book</p>
                 <button className="button">Browse Books</button>
                 <img src={reading} style={{width: '50%', height: '50%'}}></img>
             </div>
@@ -40,11 +44,11 @@ const Home = ({books}) => {
                     <div style={{marginTop: '2%'}} className='featuredbookinfo'>{books[counter].title}</div>
                     <div className='featuredbookinfo'>{books[counter].price}</div>
                 </div>
-                <div id='circles'>
-                    <div class='circle'></div>
-                    <div class='circle'></div>
-                    <div class='circle'></div>
-                    <div class='circle'></div>
+                <div ref={circles} id='circles'>
+                    <circle className='circle'></circle>
+                    <circle className='circle'></circle>
+                    <circle className='circle'></circle>
+                    <circle className='circle'></circle>
                 </div>
             </div>
             <div id='discount'>

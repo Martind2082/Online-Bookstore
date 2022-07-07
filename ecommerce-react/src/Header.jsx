@@ -1,7 +1,7 @@
 const Header = () => {
     return ( 
         <div id='header'>
-            <p className='headeritem' id='left'>Library</p>
+            <p className='headeritem' id='left'>Bookstore</p>
             <div id='right'>
                 <p className='headeritem'>Home</p>
                 <p className='headeritem'>Books</p>
