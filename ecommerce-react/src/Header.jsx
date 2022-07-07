@@ -1,10 +1,10 @@
 const Header = () => {
     return ( 
         <div id='header'>
-            <p id='left'>Library</p>
+            <p className='headeritem' id='left'>Library</p>
             <div id='right'>
-                <p>Home</p>
-                <p>Books</p>
+                <p className='headeritem'>Home</p>
+                <p className='headeritem'>Books</p>
                 <div id='cartContainer'>
                     <img src="https://cdn-icons-png.flaticon.com/512/1413/1413908.png" alt="cart" />
                     <div id='cartcount'>0</div>

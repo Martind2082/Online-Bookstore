@@ -25,6 +25,10 @@
   height: 50px;
   width: 50px;
 }
+.headeritem:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 #left {
   width: 20%;
   height: 100%;
@@ -45,6 +49,10 @@
   align-items: center;
   width: 20%;
   height: 80%;
+}
+#cartContainer:hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 #cartcount {
   align-self: start;
