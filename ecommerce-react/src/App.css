@@ -54,18 +54,6 @@
   transform: scale(1.1);
   cursor: pointer;
 }
-#cartcount {
-  align-self: start;
-  height: 50%;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  background-color: red;
-  color: white;
-  font-size: 1.5rem;
-}
 
 #welcome {
   width: 100%;
@@ -146,6 +134,38 @@ img {
   background-color: rgb(193, 189, 189);
 }
 
+#discounts {
+  width: 100%;
+  height: 90vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#discountbooks {
+  width: 100%;
+  height: 80%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(4, 20%);
+  grid-gap: 5%;
+}
+.discountbook {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.discountbook p {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+.discountimg {
+  width: 100%;
+  height: 70%;
+}
+
 footer {
   color: white;
   background-color: rgb(43, 34, 34);
@@ -164,4 +184,8 @@ footer div {
 }
 footer div p {
   font-size: 1.25rem;
+}
+footer p:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

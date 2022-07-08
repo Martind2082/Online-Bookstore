@@ -1,8 +1,8 @@
 import reading from './Images/reading.png';
 import backward from './Images/back.png';
 import forward from './Images/forward.png';
-import { useState, useRef } from 'react';
-import { useEffect } from 'react';
+import Discount from './Discount';
+import { useState, useEffect, useRef } from 'react';
 const Home = ({books}) => {
     const [counter, setCounter] = useState(0);
     const circles = useRef();
@@ -19,12 +19,11 @@ const Home = ({books}) => {
         return counter - 1;
     }
     useEffect(() => {
-        console.log(circles.current);
         for (let i = 0; i < 4; i++) {
             circles.current.children[i].style.backgroundColor = 'rgb(193, 189, 189)';
         }
         circles.current.children[counter].style.backgroundColor = 'orange';
-    }, [counter])
+    }, [counter]);
     return ( 
         <div>
             <div id='welcome'>
@@ -51,14 +50,12 @@ const Home = ({books}) => {
                     <circle className='circle'></circle>
                 </div>
             </div>
-            <div id='discount'>
-                <p>Discount Books</p>
-            </div>
+            <Discount books={books} />
             <footer>
                 <p style={{height: '1rem'}}>Library</p>
                 <div>
                     <p>Home</p>
-                    <p>About</p>
+                    <p>Books</p>
                     <p>Cart</p>
                 </div>
             </footer>

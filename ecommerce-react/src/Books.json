@@ -31,6 +31,42 @@
             "image": "https://i1.wp.com/www.samuelthomasdavies.com/wp-content/uploads/2017/08/Rich-Dad-Poor-Dad-Summary.png?fit=522%2C778&ssl=1",
             "id": 4,
             "price": "$30.00"
+        },
+        {
+            "title": "Can't Hurt Me",
+            "body": "Can't Hurt Me is the story of David Goggins, who went from being overweight and depressed to becoming a record-breaking athlete, inspiring military leader, and world-class personal trainer.",
+            "author": "David Goggins",
+            "image": "https://i0.wp.com/www.samuelthomasdavies.com/wp-content/uploads/2019/01/Cant-Hurt-Me-Summary.jpg?resize=195%2C300&ssl=1",
+            "id": 5,
+            "oldprice": "$35.00",
+            "price": "$30.00"
+        },
+        {
+            "title": "The Ear the Eye and the Arm",
+            "body": "The Ear, the Eye and the Arm is a 1994 science fiction novel for young adults by Nancy Farmer. Set in 2194, it follows three children held by a ruthless Zimbabwean general who tries to escape their captors in the country’s dense and crime-ridden capital, Harare. The siblings, Rita, Kuda, and Tendai, use their smarts to navigate the city’s dangerous underbelly and discover for themselves the importance of human rights and freedoms.",
+            "author": "Nancy Farmer",
+            "image": "https://static.tvtropes.org/pmwiki/pub/images/cover_of_the_eye_the_ear_and_the_arm.png",
+            "id": 6,
+            "oldprice": "$30.00",
+            "price": "$20.00"
+        },
+        {
+            "title": "Turtles All The Way Down",
+            "body": "Turtles All the Way Down tells the story of Aza Holmes, an Indiana teenager living with a mental illness. Aza deals with intrusive thoughts and compulsive behavior, particularly relating to bacteria. She regularly researches C. diff, a type of bacteria that can cause a deadly infection.",
+            "author": "John Green",
+            "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503002776l/35504431._SY475_.jpg",
+            "id": 7,
+            "oldprice": "$25.00",
+            "price": "$15.00"
+        },
+        {
+            "title": "Of Mice and Men",
+            "body": "Of Mice and Men is a novella written by John Steinbeck. Published in 1937, it narrates the experiences of George Milton and Lennie Small, two displaced migrant ranch workers, who move from place to place in California in search of new job opportunities during the Great Depression in the United States.",
+            "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Of_Mice_and_Men_%281937_1st_ed_dust_jacket%29.jpg",
+            "author": "John Steinbeck",
+            "id": 8,
+            "oldprice": "$20.00",
+            "price": "$10.00"
         }
     ]
 }
