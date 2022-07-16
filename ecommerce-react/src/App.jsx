@@ -1,17 +1,28 @@
 import './App.css'
 import Header from './Header'
 import Home from './Home'
-import Books from './Books.json'
-import {BrowserRouter, Route, Router, Link} from 'react-router-dom';
+import Bookslist from './Bookslist.json'
+import Books from './Books'
+import Cart from './Cart'
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Footer from './Footer'
 
 function App() {
-  const {books} = Books;
+  const {bookslist} = Bookslist;
   return (
-    <div>
+    <Router>
       <Header />
-      <Home books={books}/>
-    </div>
+      <Routes>
+        <Route exact path="/" element={<Home bookslist={bookslist}/>} />
+        <Route exact path="/books" element={<Books bookslist={bookslist} />}/>
+        <Route exact path="/cart" element={<Cart />} />
+      </Routes>
+      <Footer />
+    </Router>
   )
 }
 
 export default App
+
+
+
