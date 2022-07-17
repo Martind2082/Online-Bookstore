@@ -5,7 +5,7 @@ import Discount from './Discount';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home = ({bookslist}) => {
+const Home = ({bookslist, rating}) => {
     let navigate = useNavigate();
     const [counter, setCounter] = useState(0);
     const [buttonclicked, setbuttonclicked] = useState(false);
@@ -59,7 +59,7 @@ const Home = ({bookslist}) => {
                     <circle className='circle'></circle>
                 </div>
             </div>
-            <Discount bookslist={bookslist} />
+            <Discount bookslist={bookslist} rating={rating}/>
         </div>
      );
 }

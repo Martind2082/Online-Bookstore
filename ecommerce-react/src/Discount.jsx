@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const Discount = ({bookslist}) => {
+const Discount = ({bookslist, rating}) => {
     function scrolltop() {
         window.scrollTo(0, 0);
     }
@@ -18,6 +18,7 @@ const Discount = ({bookslist}) => {
                     return <div key={book.id} className='discountbook book' onClick={() => {navigate(`/books/${book.id}`); scrolltop()}}>
                         <img className='discountimg' src={book.image} style={{border: '1px solid black'}}></img>
                         <p>{book.title}</p>
+                        <p>{rating(book.rating)}</p>
                         <p id='discountprice'><strike>{book.oldprice}</strike>{book.price}</p>
                     </div>
                 })
