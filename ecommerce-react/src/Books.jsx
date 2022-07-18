@@ -9,7 +9,7 @@ const Books = ({bookslist, rating}) => {
     return (
         <div id="books">
             <div id='allbooks' style={{fontWeight: 'bold', fontSize: '2.5rem'}}>All Books</div>
-            <div id='bookscontainer'>
+            <div id='books_container'>
                 {bookslist.map(book => {
                     return <div key={book.id} className="book" onClick={() => {navigate(`/books/${book.id}`); scrolltop()}}>
                         <img src={book.image}></img>

@@ -31,11 +31,11 @@ const Home = ({bookslist, rating}) => {
             <div id='welcome'>
                 <p style={{fontSize: "3rem", height: '1rem', fontWeight: 'bold'}}>Welcome to the Bookstore!</p>
                 <p style={{fontSize: '2rem'}}>Find your dream book</p>
-                <button onClick={() => navigate("/books")} className="button" id='browsebooks'>Browse Now</button>
+                <button onClick={() => navigate("/books")} className="button" id='browsenow'>Browse Now</button>
                 <img src={reading} style={{width: '50%', height: '50%'}}></img>
             </div>
             <div id='featured' ref={featured}>
-                <p id="featuredtitle">Featured Books</p>
+                <p id="featured_title">Featured Books</p>
                 <div id='frontbackbtns'>
                     <img onClick={() => setCounter(back())} id='back' className='frontbackbtn' src={backward}></img>
                     <img onClick={() => {front()}} id='front' className='frontbackbtn' src={forward}></img>
