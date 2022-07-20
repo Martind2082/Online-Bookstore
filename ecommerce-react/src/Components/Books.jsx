@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
 const Books = ({bookslist, rating}) => {
-    
     function scrolltop() {
         window.scrollTo(0, 0);
     }

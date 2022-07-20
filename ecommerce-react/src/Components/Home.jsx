@@ -11,9 +11,6 @@ const Home = ({bookslist, rating}) => {
     const featured = useRef();
     let counter = 0;
     
-    // function bookslide() {
-        
-    // }
     return ( 
         <div>
             <section id='welcome'>

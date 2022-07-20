@@ -54,7 +54,6 @@
   color: rgb(98, 98, 235);
   display: flex;
 }
-<<<<<<< HEAD
 #welcome_left, #welcome_right {
   height: 100%;
   width: 50%;
@@ -83,10 +82,9 @@
 }
 #browsebooks {
   margin-bottom: 10vh;
-=======
+}
 #browsenow:hover {
   cursor: pointer;
->>>>>>> 95e72cc5e9ea8678ee67870423452323863f9dee
 }
 
 #featureddeal {
@@ -103,13 +101,10 @@
   align-items: center;
   background-color: rgb(209, 232, 253);
 }
-<<<<<<< HEAD
-=======
 img {
   width: 100%;
   height: 100%;
 }
->>>>>>> 95e72cc5e9ea8678ee67870423452323863f9dee
 #featured_title {
   font-size: 3rem;
   height: 1rem;
@@ -158,7 +153,6 @@ img {
   height: 70%;
 }
 #deal img:hover {
-  transform: scale(1.1);
   cursor: pointer;
 }
 
@@ -214,7 +208,7 @@ img {
   padding-top: 5vh;
   justify-content: center;
   grid-template-columns: repeat(4, 20%);
-  grid-auto-rows: 40%;
+  grid-auto-rows: 35%;
   grid-row-gap: 15%;
   grid-column-gap: 5%;
 }
@@ -255,40 +249,53 @@ img {
   font-size: 1rem;
 }
 
-#cart img {
+#cart {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10vh;
+}
+#cart_info {
+  display: flex;
+  width: 64%;
+  font-size: 1.2rem;
+  padding: 0 6%;
+  justify-content: space-between;
+}
+#empty {
   display: block;
   margin: auto;
   width: 50%;
   height: 50%;
 }
-#cart p {
-  font-size: 2.5rem;
-}
-#cart div p {
-  font-size: 1rem;
-  color: white;
-  font-weight: bold;
-  padding-left: 5%;
-}
-#price {
+.cart_book {
+  position: relative;
+  padding: 2%;
+  height: 30vh;
+  width: 70%; 
+  border-top: 1.5px solid rgb(193, 185, 185);
   display: flex;
-  justify-content: end;
-  width: 5%;
-  margin-right: 5%;
-}
-#cart div {
-  margin: auto;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-evenly;
-  margin-bottom: 10vh;
-  font-size: 1rem;
-  width: 80%;
-  background-color: rgb(159, 131, 243);
-  border-radius: 10px;
 }
-#cart div p {
-  width: 33%;
+.cart_book--book {
+  width: 80%;
+  height: 100%;
+  display: flex;
+}
+.cart_book--book img {
+  width: 20%;
+}
+.cart_book--book div {
+  margin-left: 3%;
+}
+.remove {
+  color: rgb(232, 118, 118);
+  font-size: 0.9rem;
+}
+.remove:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 #bookinfo {
