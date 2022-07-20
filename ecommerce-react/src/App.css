@@ -26,22 +26,22 @@
   font-size: 2rem;
   box-shadow: 0 2px 20px 0  rgb(78, 78, 80);
 }
-.headeritem:hover {
+.header_item:hover {
   cursor: pointer;
   text-decoration: underline;
 }
-#headerleft {
+#header_left {
   width: 12%;
   height: 100%;
 }
-#headerright {
+#header_right {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 30%;
   height: 100%;
 }
-#carticon:hover {
+#cart_icon:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
@@ -54,6 +54,7 @@
   color: rgb(98, 98, 235);
   display: flex;
 }
+<<<<<<< HEAD
 #welcome_left, #welcome_right {
   height: 100%;
   width: 50%;
@@ -82,6 +83,10 @@
 }
 #browsebooks {
   margin-bottom: 10vh;
+=======
+#browsenow:hover {
+  cursor: pointer;
+>>>>>>> 95e72cc5e9ea8678ee67870423452323863f9dee
 }
 
 #featureddeal {
@@ -98,6 +103,13 @@
   align-items: center;
   background-color: rgb(209, 232, 253);
 }
+<<<<<<< HEAD
+=======
+img {
+  width: 100%;
+  height: 100%;
+}
+>>>>>>> 95e72cc5e9ea8678ee67870423452323863f9dee
 #featured_title {
   font-size: 3rem;
   height: 1rem;
@@ -158,7 +170,7 @@
   flex-direction: column;
   align-items: center;
 }
-#discountbooks {
+#discount_books {
   width: 100%;
   height: 80%;
   display: grid;
@@ -166,22 +178,22 @@
   grid-template-columns: repeat(4, 20%);
   grid-gap: 5%;
 }
-.discountbook {
+.discount_book {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
-.discountbook p {
+.discount_book p {
   margin-top: 2%;
   margin-bottom: 2%;
 }
-.discountimg {
+.discount_img {
   width: 100%;
   height: 70%;
 }
-#discountprice {
+#discount_price {
   width: 60%;
   display: flex;
   justify-content: space-around;
@@ -196,7 +208,7 @@
   font-size: 2rem;
   margin-left: 5%;
 }
-#bookscontainer {
+#books_container {
   width: 100%;
   display: grid;
   padding-top: 5vh;
