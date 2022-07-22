@@ -16,7 +16,7 @@ const Discount = ({bookslist, rating}) => {
                         <img className='discount_img' src={bookslist[id - 1].image} style={{border: '1px solid black'}}></img>
                         <p>{bookslist[id - 1].title}</p>
                         <p>{rating(bookslist[id - 1].rating)}</p>
-                        <p id='discount_price'><strike style={{color: '#c2c1be'}}>{bookslist[id - 1].oldprice}</strike>{bookslist[id - 1].price}</p>
+                        <p id='discount_price'><strike style={{color: '#cccfcc'}}>{bookslist[id - 1].oldprice}</strike>{bookslist[id - 1].price}</p>
                     </div>
                 })
             }

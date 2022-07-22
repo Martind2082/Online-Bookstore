@@ -11,12 +11,17 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Footer from './Components/Footer'
 import Bookinfo from './Components/Bookinfo'
 import { useState } from 'react'
+import React from 'react';
 
+export const booksContext = React.createContext();
 function App() {
+    const {bookslist} = Bookslist;
+
     const [cartItem, setcartItem] = useState([]);
     function addCart(id) {
         setcartItem(cartItem => [...cartItem, id]);
     }
+
   function rating(rating) {
     let fullstar = <FontAwesomeIcon icon={faStar} color="#f5be27"/>
     let halfstar = <FontAwesomeIcon icon={faStarHalfStroke} color="#f5be27"/>
@@ -56,18 +61,19 @@ function App() {
         </div>
     }
 }
-  const {bookslist} = Bookslist;
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route exact path="/" element={<Home bookslist={bookslist} rating={rating}/>} />
-        <Route exact path="/books" element={<Books bookslist={bookslist} rating={rating}/>}/>
-        <Route exact path="/cart" element={<Cart cartItem={cartItem} bookslist={bookslist}/>} />
-        <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
-      </Routes>
-      <Footer />
-    </Router>
+    <booksContext.Provider value={bookslist}>
+        <Router>
+        <Header />
+        <Routes>
+            <Route exact path="/" element={<Home rating={rating}/>} />
+            <Route exact path="/books" element={<Books rating={rating}/>}/>
+            <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem}/>} />
+            <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
+        </Routes>
+        <Footer />
+        </Router>
+    </booksContext.Provider>
   )
 }
 

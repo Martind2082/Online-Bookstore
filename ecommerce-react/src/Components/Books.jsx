@@ -1,6 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { booksContext } from '../App';
 
-const Books = ({bookslist, rating}) => {
+const Books = ({ rating}) => {
+    const bookslist = useContext(booksContext);
     function scrolltop() {
         window.scrollTo(0, 0);
     }

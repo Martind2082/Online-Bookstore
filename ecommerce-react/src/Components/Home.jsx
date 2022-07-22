@@ -1,15 +1,15 @@
 import read from '../Images/read.png';
-import backward from '../Images/back.png';
-import forward from '../Images/forward.png';
 import Discount from './Discount';
-import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { booksContext } from '../App';
 
-const Home = ({bookslist, rating}) => {
+const Home = ({rating}) => {
+    const bookslist = useContext(booksContext);
+
     let navigate = useNavigate();
     const circles = useRef();
     const featured = useRef();
-    let counter = 0;
     
     return ( 
         <div>
@@ -31,11 +31,6 @@ const Home = ({bookslist, rating}) => {
             <div id='featureddeal'>
                 <div id='featured' ref={featured}>
                     <p id="featured_title">Featured Books</p>
-                    {/* <div id='frontbackbtns'>
-                        <img onClick={() => setCounter(back())} id='back' className='frontbackbtn' src={backward}></img>
-                        <img onClick={() => {front()}} id='front' className='frontbackbtn' src={forward}></img>
-                    </div> */}
-
                     <div ref={circles} id='circles'>
                         <circle className='circle'></circle>
                         <circle className='circle'></circle>

@@ -8,7 +8,8 @@
             "id": 1,
             "rating": 4.5,
             "oldprice": "$35.00",
-            "price": "$30.00"
+            "price": "$30.00",
+            "amount": 1
         },
         {
             "title": "The Fault In Our Stars",
@@ -16,6 +17,7 @@
             "author": "John Green",
             "image": "https://images-na.ssl-images-amazon.com/images/I/81a4kCNuH+L.jpg",
             "id": 2,
+            "amount": 1,
             "price": "$30.00",
             "rating": 5
         },
@@ -25,6 +27,7 @@
             "author": "Suzanne Collins",
             "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1586722975l/2767052.jpg",
             "id": 3,
+            "amount": 1,
             "rating": 4.5,
             "price": "$32.00"
         },
@@ -34,6 +37,7 @@
             "author": "Paulo Coelho",
             "image": "https://m.media-amazon.com/images/I/51Z0nLAfLmL.jpg",
             "id": 4,
+            "amount": 1,
             "rating": 5,
             "price": "$20.00"
         },
@@ -44,6 +48,7 @@
             "image": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1503002776l/35504431._SY475_.jpg",
             "id": 5,
             "oldprice": "$25.00",
+            "amount": 1,
             "rating": 3.5,
             "price": "$15.00"
         },
@@ -53,6 +58,7 @@
             "author": "Robert Kiyosaki",
             "image": "https://i1.wp.com/www.samuelthomasdavies.com/wp-content/uploads/2017/08/Rich-Dad-Poor-Dad-Summary.png?fit=522%2C778&ssl=1",
             "id": 6,
+            "amount": 1,
             "rating": 4,
             "price": "$30.00"
         },
@@ -62,6 +68,7 @@
             "author": "Nancy Farmer",
             "image": "https://static.tvtropes.org/pmwiki/pub/images/cover_of_the_eye_the_ear_and_the_arm.png",
             "id": 7,
+            "amount": 1,
             "rating": 4.5,
             "oldprice": "$30.00",
             "price": "$20.00"
@@ -72,6 +79,7 @@
             "image": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Of_Mice_and_Men_%281937_1st_ed_dust_jacket%29.jpg",
             "author": "John Steinbeck",
             "id": 8,
+            "amount": 1,
             "rating": 4,
             "oldprice": "$20.00",
             "price": "$10.00"
