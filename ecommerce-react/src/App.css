@@ -10,6 +10,7 @@ body {
   background: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80');
   background-attachment: fixed;
   background: white;
+  overflow-x: hidden;
 }
 .button {
   background-color: rgb(98, 98, 235);
@@ -124,6 +125,12 @@ body {
 #magnify {
   font-size: 1.5rem;
 }
+#search_results {
+  display: none;
+  width: 50%;
+  height: 20vh;
+  border: 2px solid red;
+}
 
 #highlights {
   position: relative;
@@ -191,20 +198,6 @@ img {
   height: 1rem;
   margin-top: 1%;
   z-index: 2;
-}
-#circles {
-  width: 20%;
-  height: 3%;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 2vh;
-}
-.circle {
-  height: 100%;
-  width: 15%;
-  border-radius: 50%;
-  background-color: rgb(193, 189, 189);
 }
 #deal {
   background: white;
@@ -433,9 +426,6 @@ img {
 
 
 @media (max-width: 800px) {
-  html, body {
-    overflow-x: hidden;
-  }
   #header {
     font-size: 1rem;
   }

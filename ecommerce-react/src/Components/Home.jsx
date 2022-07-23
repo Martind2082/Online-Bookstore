@@ -12,11 +12,33 @@ import { booksContext } from '../App';
 
 const Home = ({rating, addCart, cartItem}) => {
     const bookslist = useContext(booksContext);
+    const booknames = [];
+    bookslist.forEach(book => {
+        booknames.push(book.title);
+    });
     function scrolltop() {
         window.scrollTo(0, 0);
     }
     let navigate = useNavigate();
-    const featured = useRef();
+    const input = useRef();
+    const results = useRef();
+
+    function inputChange(val) {
+        results.current.textContent = '';
+        if (val === '') {
+            results.current.style.display = 'none';
+            return;
+        }
+        for (let i = 0; i < booknames.length; i++) {
+            let str = booknames[i].toLowerCase().split(' ').join('');
+            let r = new RegExp(val.toLowerCase().split(' ').join(''));
+            if (r.test(str)) {
+                results.current.style.display = 'block';
+                let div = booknames[i];
+                results.current.append(div);
+            }
+        }
+    }
     return ( 
         <div>
             <section id='welcome'>
@@ -29,10 +51,11 @@ const Home = ({rating, addCart, cartItem}) => {
                 </div>
                 <div id="searchbar_container">
                     <div id="searchbar">
-                        <input placeholder='Search'/>
+                        <input ref={input} onChange={() => inputChange(input.current.value)} placeholder='Search'/>
                         <FontAwesomeIcon id='magnify' icon={faMagnifyingGlass}/>
                     </div>
                 </div>
+                <div ref={results} id='search_results'></div>
                 <img style={{width: '90%', height: '60vh'}} src="https://react-library1.firebaseapp.com/static/media/Undraw_Books.64f45ed25262241aba12eff6dcb25d88.svg" />
             </section>
             <div id="highlights">
@@ -64,7 +87,7 @@ const Home = ({rating, addCart, cartItem}) => {
                 <svg style={{marginTop: '-150px'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgb(239, 231, 244)" fillOpacity="1" d="M0,128L40,128C80,128,160,128,240,133.3C320,139,400,149,480,176C560,203,640,245,720,240C800,235,880,181,960,170.7C1040,160,1120,192,1200,213.3C1280,235,1360,245,1400,250.7L1440,256L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
             </div>
             <div id='featureddeal'>
-                <div id='featured' ref={featured}>
+                <div id='featured'>
                     <p id="featured_title">Featured Books</p>
                     <Swiper id='swiper'
                     modules={[Autoplay, Navigation, Pagination]}
