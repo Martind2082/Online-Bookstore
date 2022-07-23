@@ -29,18 +29,33 @@ const Home = ({rating, addCart, cartItem}) => {
             results.current.style.display = 'none';
             return;
         }
+        let arr = [];
         for (let i = 0; i < booknames.length; i++) {
+            if (arr.length > 4) {
+                break;
+            }
             let str = booknames[i].toLowerCase().split(' ').join('');
             let r = new RegExp(val.toLowerCase().split(' ').join(''));
             if (r.test(str)) {
-                results.current.style.display = 'block';
-                let div = booknames[i];
-                results.current.append(div);
+                arr.push(booknames[i]);
             }
+        }
+        results.current.style.display = 'block';
+        if (arr.length === 0) {
+            results.current.textContent = 'no results';
+        } else {
+            arr.forEach(val => {
+                let div = document.createElement('div');
+                div.style.textAlign = 'center';
+                div.style.color = 'black';
+                div.style.marginBottom = '2%';
+                div.textContent = val;
+                results.current.append(div);
+            })
         }
     }
     return ( 
-        <div>
+        <div id='home'>
             <section id='welcome'>
                 <div id='welcome_library--background'>
                     <div id='welcome_top'>
@@ -54,9 +69,9 @@ const Home = ({rating, addCart, cartItem}) => {
                         <input ref={input} onChange={() => inputChange(input.current.value)} placeholder='Search'/>
                         <FontAwesomeIcon id='magnify' icon={faMagnifyingGlass}/>
                     </div>
+                    <div ref={results} id='search_results'></div>
                 </div>
-                <div ref={results} id='search_results'></div>
-                <img style={{width: '90%', height: '60vh'}} src="https://react-library1.firebaseapp.com/static/media/Undraw_Books.64f45ed25262241aba12eff6dcb25d88.svg" />
+                <img style={{width: '90%', height: '60vh', zIndex: '1'}} src="https://react-library1.firebaseapp.com/static/media/Undraw_Books.64f45ed25262241aba12eff6dcb25d88.svg" />
             </section>
             <div id="highlights">
                 <svg className="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgb(239, 231, 244)" fillOpacity="1" d="M0,224L40,208C80,192,160,160,240,165.3C320,171,400,213,480,213.3C560,213,640,171,720,181.3C800,192,880,256,960,256C1040,256,1120,192,1200,149.3C1280,107,1360,85,1400,74.7L1440,64L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path></svg>
@@ -85,6 +100,7 @@ const Home = ({rating, addCart, cartItem}) => {
                     </div>
                 </div>
                 <svg style={{marginTop: '-150px'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgb(239, 231, 244)" fillOpacity="1" d="M0,128L40,128C80,128,160,128,240,133.3C320,139,400,149,480,176C560,203,640,245,720,240C800,235,880,181,960,170.7C1040,160,1120,192,1200,213.3C1280,235,1360,245,1400,250.7L1440,256L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
+                <div style={{width: '100%', height: '4vh', background: 'linear-gradient(180deg, rgb(239, 231, 244), white)', position: 'relative', top: '-10px'}}></div>
             </div>
             <div id='featureddeal'>
                 <div id='featured'>

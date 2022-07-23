@@ -65,9 +65,6 @@ body {
   flex-direction: column;
   align-items: center;
 }
-#welcome img {
-  z-index: 10;
-}
 #welcome_library--background {
   width: 100%;
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bGlicmFyeSUyMGJhY2tncm91bmR8ZW58MHx8MHx8&w=1000&q=80');
@@ -95,14 +92,17 @@ body {
   cursor: pointer;
 }
 #searchbar_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
   background: linear-gradient(180deg, rgb(154, 151, 151), rgb(239, 231, 244));
   width: 100%;
-  height: 3rem;
   padding: 2rem 0;
 }
 #searchbar {
   width: 50%;
-  height: 100%;
+  height: 7vh;
   margin: auto;
   display: flex;
   align-items: center;
@@ -126,10 +126,18 @@ body {
   font-size: 1.5rem;
 }
 #search_results {
+  position: absolute;
   display: none;
-  width: 50%;
-  height: 20vh;
-  border: 2px solid red;
+  margin-top: 1vh;
+  width: 40%;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding-top: 1%;
+  background: aliceblue;
+  top: 10vh;
+  z-index: 2;
+  color: black;
+  text-align: center;
 }
 
 #highlights {
@@ -197,9 +205,9 @@ img {
   font-size: 3rem;
   height: 1rem;
   margin-top: 1%;
-  z-index: 2;
 }
 #deal {
+  margin-bottom: 50vh;
   background: white;
   width: 50%;
   height: 100%;
@@ -384,18 +392,14 @@ img {
 
 #bookinfo {
   display: flex;
-  width: 80%;
-  height: max-content;
   padding-top: 10vh;
   padding-bottom: 5vh;
-}
-#bookinfo div {
-  width: 50%;
-  height: 70%;
 }
 #bookinfo_left {
   display: flex;
   justify-content: center;
+  width: 30%;
+  height: 50vh;
 }
 #bookinfo_left img {
   width: 60%;
@@ -404,14 +408,13 @@ img {
 #bookinfo_right { 
   display: flex;
   flex-direction: column;
+  width: 50%;
 }
 #buttons {
   display: flex;
-  margin: auto;
   width: 70%;
   justify-content: space-around;
   align-items: center;
-  margin-bottom: 10vh;
 }
 #buttons p {
   width: 50%;
@@ -426,20 +429,76 @@ img {
 
 
 @media (max-width: 800px) {
+  #home {
+    height: 465vh;
+  }
   #header {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   #header img {
     width: 30%;
+    height: 50%;
   }
   #header_right {
     width: 40%;
+    margin-right: 5%;
   }
   #welcome_top {
     width: 100%;
     font-size: 1rem;
   }
+  #searchbar {
+    width: 80%;
+    padding-right: 5%;
+  }
   #welcome_top :nth-child(1) {
     font-size: 1.5rem;
+  }
+  #featureddeal {
+    flex-direction: column;
+  }
+  #featured, #deal {
+    width: 100%;
+    height: 80vh;
+  }
+  #discount_books {
+    grid-template-columns: repeat(2, 30%);
+    grid-column-gap: 10%;
+  }
+  #discounts {
+    margin-top: 60vh;
+  }
+  #bookinfo {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding-top: 5vh;
+  }
+  #buttons {
+    width: 100%;
+  }
+  #bookinfo_left {
+    width: 70%;
+    height: 40vh;
+  }
+  #bookinfo_right {
+    width: 80%;
+  }
+  #bookinfo_right {
+    position: relative;
+    top: -40px;
+  }
+  #books {
+    height: 270vh;
+  }
+  #books_container {
+    grid-template-columns: repeat(2, 40%);
+    grid-auto-rows: 12%;
+    grid-column-gap: 7%;
+    grid-row-gap: 10%;
+  }
+  #empty {
+    width: 80%;
   }
 }

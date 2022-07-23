@@ -40,7 +40,7 @@ const Cart = ({cartItem, setcartItem}) => {
             <p style={{fontWeight: 'bold', fontSize: '2.5rem', marginBottom: '-5px', marginLeft: '1rem'}}>Cart</p>
             {cartItem.length === 0 ? 
                 <div>
-                    <img style={{width: '35%'}} src={empty} id="empty"></img>
+                    <img src={empty} id="empty"></img>
                     <p style={{textAlign: 'center', fontSize: '1.5rem'}}>You don't have any books in your cart</p>
                     <button onClick={() => navigate('/books')} style={{display: 'block', margin: 'auto'}} className="button">Browse Books</button>
                 </div> : 
