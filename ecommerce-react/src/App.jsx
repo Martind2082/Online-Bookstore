@@ -18,8 +18,8 @@ function App() {
     const {bookslist} = Bookslist;
 
     const [cartItem, setcartItem] = useState([]);
-    function addCart(id) {
-        setcartItem(cartItem => [...cartItem, id]);
+    function addCart(item) {
+        setcartItem(cartItem => [...cartItem, item]);
     }
 
   function rating(rating) {
@@ -66,7 +66,7 @@ function App() {
         <Router>
         <Header />
         <Routes>
-            <Route exact path="/" element={<Home rating={rating}/>} />
+            <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
             <Route exact path="/books" element={<Books rating={rating}/>}/>
             <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem}/>} />
             <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>

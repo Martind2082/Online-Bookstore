@@ -37,7 +37,7 @@ const Cart = ({cartItem, setcartItem}) => {
     let navigate = useNavigate();
     return (
         <div id='cart'>
-            <p style={{fontWeight: 'bold', fontSize: '2.5rem', marginBottom: '-5px'}}>Cart</p>
+            <p style={{fontWeight: 'bold', fontSize: '2.5rem', marginBottom: '-5px', marginLeft: '1rem'}}>Cart</p>
             {cartItem.length === 0 ? 
                 <div>
                     <img style={{width: '35%'}} src={empty} id="empty"></img>
@@ -46,7 +46,7 @@ const Cart = ({cartItem, setcartItem}) => {
                 </div> : 
                 <div id='cart_checkout'>
                     <div id='cart_left'>
-                        <p onClick={() => {
+                        <p style={{marginLeft: '1rem'}} onClick={() => {
                             let copy = [...cartItem];
                             for (let i = 0; i < copy.length; i++) {
                                 copy[i].amount = 1;
