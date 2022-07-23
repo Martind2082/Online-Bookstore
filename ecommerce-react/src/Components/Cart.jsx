@@ -2,16 +2,37 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import empty from '../Images/empty.png';
-import { useContext, useRef } from 'react';
-import { booksContext } from '../App';
 
 const Cart = ({cartItem, setcartItem}) => {
-    const bookslist = useContext(booksContext);
-    let number = useRef();
-    function quantityClick(id, amount) {
-        console.log(id, amount);
-        console.log(bookslist[id - 1].amount);
-        bookslist[id - 1].amount += amount;
+    function scrolltop() {
+        window.scrollTo(0, 0);
+    }
+
+    function handleprice(price, amount) {
+        price = price.slice(1) * amount;
+        price = price.toString().split('');
+        if (price.includes('.') === false) {
+            return '$' + price.join('');
+        }
+        if (price.includes('.') && price.join('').split('.')[1].length < 2) {
+            return '$' + price.join('') + 0;
+        } else {
+            price = price.join('').split('.');
+            let first = price[0];
+            let second = price[1];
+            second = second.split('');
+            second.splice(2);
+            return `$${first}.${second.join('')}`;
+        }
+    }
+    function quantityClick(item, amount) {
+        let arr = [...cartItem];
+        let index = arr.indexOf(item);
+        arr[index].amount += amount;
+        if (arr[index].amount === 0) {
+            arr[index].amount = 1;
+        }
+        setcartItem(arr);
     }
     let navigate = useNavigate();
     return (
@@ -25,32 +46,40 @@ const Cart = ({cartItem, setcartItem}) => {
                 </div> : 
                 <div id='cart_checkout'>
                     <div id='cart_left'>
-                        <p onClick={() => setcartItem([])} className="remove">Remove all Items</p>
+                        <p onClick={() => {
+                            let copy = [...cartItem];
+                            for (let i = 0; i < copy.length; i++) {
+                                copy[i].amount = 1;
+                            }
+                            setcartItem(copy);
+                            setcartItem([]);
+                        }} className="remove">Remove all Items</p>
                         <div id="cart_info">
                             <p>Item</p>
                             <p>Price</p>
                         </div>
                         {cartItem.map(item => {
-                            return <div key={item} className="cart_book">
+                            return <div key={item.id} className="cart_book">
                                 <div className="cart_book--book">
-                                    <img src={bookslist[item - 1].image} onClick={() => {navigate(`/books/${item}`); scrolltop()}}/>
+                                    <img src={item.image} onClick={() => {navigate(`/books/${item.id}`); scrolltop()}}/>
                                     <div>
-                                        <p style={{width: 'max-content'}}>{bookslist[item - 1].title}, by {bookslist[item - 1].author}</p>
+                                        <p style={{width: 'max-content'}}>{item.title}, by {item.author}</p>
                                         <div id='quantity'>
                                             <p>Qty:</p>
-                                            <FontAwesomeIcon id={item} onClick={() => quantityClick(item, -1)} icon={faMinus}/>
-                                            <p id='item' ref={number}>{bookslist[item - 1].amount}</p>
-                                            <FontAwesomeIcon id={item} onClick={() => quantityClick(item, 1)} icon={faPlus}/>
+                                            <FontAwesomeIcon onClick={() => quantityClick(item, -1)} icon={faMinus}/>
+                                            <p>{item.amount}</p>
+                                            <FontAwesomeIcon onClick={() => quantityClick(item, 1)} icon={faPlus}/>
                                         </div>
                                         <p style={{width: 'max-content'}} onClick={() => {
                                             let copy = [...cartItem];
                                             let index = copy.indexOf(item);
+                                            copy[index].amount = 1;
                                             copy.splice(index, 1);
                                             setcartItem(copy);
                                         }} className="remove">Remove</p>
                                     </div>
                                 </div>
-                                <p style={{alignSelf: 'start', fontSize: '1.5em', marginTop: '0', fontWeight: 'bold'}}>{bookslist[item - 1].price}</p>
+                                <p style={{alignSelf: 'start', fontSize: '1.5em', marginTop: '0', fontWeight: 'bold'}}>{handleprice(item.price, item.amount)}</p>
                             </div>
                         })}
                     </div>

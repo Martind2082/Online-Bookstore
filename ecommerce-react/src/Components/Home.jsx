@@ -1,14 +1,13 @@
 import read from '../Images/read.png';
 import Discount from './Discount';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { booksContext } from '../App';
 
 const Home = ({rating}) => {
     const bookslist = useContext(booksContext);
 
     let navigate = useNavigate();
-    const circles = useRef();
     const featured = useRef();
     
     return ( 
@@ -31,12 +30,6 @@ const Home = ({rating}) => {
             <div id='featureddeal'>
                 <div id='featured' ref={featured}>
                     <p id="featured_title">Featured Books</p>
-                    <div ref={circles} id='circles'>
-                        <circle className='circle'></circle>
-                        <circle className='circle'></circle>
-                        <circle className='circle'></circle>
-                        <circle className='circle'></circle>
-                    </div>
                 </div>
                 <div id='deal'>
                     <h1>Deal of the Day!</h1>
@@ -44,7 +37,7 @@ const Home = ({rating}) => {
                     <img src="https://cdn.shopify.com/s/files/1/0579/9139/7559/products/age-7-9-percy-jackson-5-books-young-adult-collection-paperback-box-set-by-rick-riordan-3.jpg?v=1629404424"/>
                 </div>
             </div>
-            <Discount bookslist={bookslist} rating={rating}/>
+            <Discount rating={rating}/>
         </div>
      );
 }

@@ -235,14 +235,13 @@ img {
 
 #cart {
   width: 90%;
-  border: 2px solid blue;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 10vh;
 }
 #cart_info {
   display: flex;
-  width: 100%;
+  width: 95%;
   font-size: 1.2rem;
   padding: 0 6%;
   justify-content: space-between;
@@ -267,7 +266,7 @@ img {
 .cart_book {
   position: relative;
   padding: 2%;
-  height: 30vh;
+  height: 25vh;
   width: 100%; 
   border-top: 1.5px solid rgb(193, 185, 185);
   display: flex;
