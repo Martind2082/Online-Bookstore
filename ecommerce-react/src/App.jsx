@@ -12,6 +12,7 @@ import Footer from './Components/Footer'
 import Bookinfo from './Components/Bookinfo'
 import { useState } from 'react'
 import React from 'react';
+import Search from './Components/Search';
 
 export const booksContext = React.createContext();
 function App() {
@@ -20,6 +21,23 @@ function App() {
     const [cartItem, setcartItem] = useState([]);
     function addCart(item) {
         setcartItem(cartItem => [...cartItem, item]);
+        let div = document.createElement('div');
+        div.classList.add('add_alert');
+        let img = document.createElement('img');
+        img.src = item.image;
+        img.style.width = '50%';
+        img.style.height = '100%';
+        let text = document.createElement('div');
+        text.textContent = `${item.title} has been added to cart!`;
+        text.style.display = 'flex';
+        text.style.justifyContent = 'center';
+        text.style.paddingLeft = '10%';
+        div.append(img);
+        div.append(text);
+        document.body.append(div);
+        setTimeout(() => {
+            div.remove();
+        }, 4000)
     }
 
   function rating(rating) {
@@ -64,12 +82,13 @@ function App() {
   return (
     <booksContext.Provider value={bookslist}>
         <Router>
-        <Header />
+        <Header cartItem={cartItem}/>
         <Routes>
             <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
             <Route exact path="/books" element={<Books rating={rating}/>}/>
             <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem}/>} />
             <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
+            <Route exact path="/search/:value" element={<Search cartItem={cartItem} addCart={addCart} rating={rating}/>}/>
         </Routes>
         <Footer />
         </Router>

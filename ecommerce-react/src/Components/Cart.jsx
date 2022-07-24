@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import empty from '../Images/empty.png';
 
 const Cart = ({cartItem, setcartItem}) => {
+    let navigate = useNavigate();
     function scrolltop() {
         window.scrollTo(0, 0);
     }
@@ -34,7 +35,29 @@ const Cart = ({cartItem, setcartItem}) => {
         }
         setcartItem(arr);
     }
-    let navigate = useNavigate();
+    function totalAmount(cartItem) {
+        let amounts = [];
+        cartItem.forEach(item => {
+            amounts.push(item.amount);
+        })
+        let amt = amounts.reduce((x, y) => {
+            return x + y;
+        })
+        return amt;
+    }
+    function totalPrice(cartItem) {
+        let prices = [];
+        cartItem.forEach(item => {
+            prices.push(parseFloat(item.price.slice(1)) * item.amount);
+        });
+        let total = prices.reduce((x, y) => {
+            return x + y;
+        })
+        if (total.toString().split('').includes('.') && total.toString().split('.')[1].length < 2) {
+            return total + '0';
+        }
+        return total;
+    }
     return (
         <div id='cart'>
             <p style={{fontWeight: 'bold', fontSize: '2.5rem', marginBottom: '-5px', marginLeft: '1rem'}}>Cart</p>
@@ -83,7 +106,66 @@ const Cart = ({cartItem, setcartItem}) => {
                             </div>
                         })}
                     </div>
-                    <div id="cart_right">Payment Info. credit card, paypal, name on credit card, card number, expiration date, cvv</div>
+                    <div id="cart_right">
+                        <div id="total">
+                            <p>{totalAmount(cartItem)} items</p>
+                            <p style={{fontSize: '1.2rem'}}>Tax: $0.00</p>
+                            <p style={{fontSize: '1.2rem'}}>Shipping Cost: $0.00</p>
+                            <p>Total: ${totalPrice(cartItem)}</p>
+                            <div id="promo" style={{marginBottom: '10%'}}>
+                                <p style={{fontSize: '1rem', marginBottom: '0'}}>Promo Code</p>
+                                <input />
+                                <button>Apply</button>
+                            </div>
+                            <button className='button' onClick={() => navigate()}>Proceed to check out</button>
+                        </div>
+                    </div>
+                    <div id='payment'>
+                        <p>Payment Info.</p>
+                        <div>
+                            <p>Payment Method</p>
+                            <input type="radio" name="method" value="Credit Card"/>
+                            <input type="radio" name="method" value="Debit Card"/>
+                            <input type="radio" name="method" value="Paypal Card"/>
+                        </div>
+                        <div>
+                            <p>Name on Card:</p>
+                            <input />
+                        </div>
+                        <div>
+                            <p>Card number:</p>
+                            <input type="number"/>
+                        </div>
+                        <div>
+                            <div style={{display: 'flex', justifyContent: 'spaceBetween'}}>
+                                <p>Expiration Date</p>
+                                <p>CVV:</p>
+                            </div>
+                            <div>
+                                <select>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <select>
+                                    <option value={new Date().getFullYear()}>{new Date().getFullYear()}</option>
+                                    <option value={new Date().getFullYear() + 1}>{new Date().getFullYear() + 1}</option>
+                                    <option value={new Date().getFullYear() + 2}>{new Date().getFullYear() + 2}</option>
+                                    <option value={new Date().getFullYear() + 3}>{new Date().getFullYear() + 3}</option>
+                                    <option value={new Date().getFullYear() + 4}>{new Date().getFullYear() + 4}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
         </div>

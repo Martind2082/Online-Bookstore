@@ -46,12 +46,28 @@ const Home = ({rating, addCart, cartItem}) => {
         } else {
             arr.forEach(val => {
                 let div = document.createElement('div');
+                div.classList.add('option');
                 div.style.textAlign = 'center';
                 div.style.color = 'black';
-                div.style.marginBottom = '2%';
+                div.style.padding = '2%';
                 div.textContent = val;
+                div.onclick = () => {
+                    for (let i = 0; i < bookslist.length; i++) {
+                        if (bookslist[i].title === val) {
+                            navigate(`/books/${bookslist[i].id}`);
+                        }
+                    }
+                }
                 results.current.append(div);
             })
+        }
+        input.current.onkeydown = (e) => {
+            if (e.key === 'Enter' || e === 'enter') {
+                if (arr.length === 0) {
+                    return;
+                }
+                navigate(`/search/${val}`)
+            }
         }
     }
     return ( 
@@ -67,7 +83,7 @@ const Home = ({rating, addCart, cartItem}) => {
                 <div id="searchbar_container">
                     <div id="searchbar">
                         <input ref={input} onChange={() => inputChange(input.current.value)} placeholder='Search'/>
-                        <FontAwesomeIcon id='magnify' icon={faMagnifyingGlass}/>
+                        <FontAwesomeIcon onClick={() => navigate(`/search/${input.current.value}`)} id='magnify' icon={faMagnifyingGlass}/>
                     </div>
                     <div ref={results} id='search_results'></div>
                 </div>
