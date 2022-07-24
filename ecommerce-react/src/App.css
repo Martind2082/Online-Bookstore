@@ -78,7 +78,7 @@ body {
   background: white;
   width: 300px;
   height: 12vh;
-  top: 30%;
+  top: 10vh;
   padding: 2%;
   box-shadow: 5px 5px 10px 5px rgb(184, 182, 182);
   right: 0;
@@ -339,8 +339,19 @@ img {
   padding-bottom: 20vh;
 }
 #allbooks {
-  font-size: 2rem;
-  margin-left: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+#sort_container {
+  width: 24%;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+option {
+  font-size: 0.9rem;
 }
 #books_container {
   width: 100%;
@@ -348,7 +359,7 @@ img {
   padding-top: 5vh;
   justify-content: center;
   grid-template-columns: repeat(4, 20%);
-  grid-auto-rows: 25%;
+  grid-auto-rows: 23%;
   grid-row-gap: 10%;
   grid-column-gap: 5%;
 }
@@ -622,6 +633,15 @@ img {
     text-align: center;
     padding-top: 5vh;
   }
+  #allbooks {
+    flex-direction: column;
+  }
+  #sort_container {
+    margin-left: 5%;
+  }
+  #sort_container p {
+    margin-right: 20%;
+  }
   #buttons {
     width: 100%;
   }
@@ -635,9 +655,6 @@ img {
   #bookinfo_right {
     position: relative;
     top: -40px;
-  }
-  #books {
-    height: 270vh;
   }
   #books_container {
     grid-template-columns: repeat(2, 40%);
@@ -733,8 +750,5 @@ img {
   }
   .result_item--info :nth-child(3) {
     margin-top: 0;
-  }
-  .add_alert {
-    top: 10vh;
   }
 }

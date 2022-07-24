@@ -67,7 +67,7 @@ const Cart = ({cartItem, setcartItem}) => {
     }
     const promoinput = useRef();
     function checkPromo(e) {
-        if (e.key === 'Enter' && code === false && promoinput.current.value === 'readreadread') {
+        if (e.key === 'Enter' && code === false && promoinput.current.value.toLowerCase() === 'readreadread') {
             setCode(true);
         }
     }
@@ -130,7 +130,7 @@ const Cart = ({cartItem, setcartItem}) => {
                                 <p style={{fontSize: '1rem', marginBottom: '0'}}>Promo Code</p>
                                 <input ref={promoinput} onKeyDown={() => checkPromo(event)}/>
                                 <button className="hover" onClick={() => {
-                                    if (code === false && promoinput.current.value === 'readreadread') {
+                                    if (code === false && promoinput.current.value.toLowerCase() === 'readreadread') {
                                         setCode(true);
                                     }
                                 }}>{code ? 'Success' : 'Apply'}</button>

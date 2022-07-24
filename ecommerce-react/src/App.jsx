@@ -10,7 +10,7 @@ import Cart from './Components/Cart'
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Footer from './Components/Footer'
 import Bookinfo from './Components/Bookinfo'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import React from 'react';
 import Search from './Components/Search';
 
@@ -19,7 +19,7 @@ function App() {
     const {bookslist} = Bookslist;
 
     const [cartItem, setcartItem] = useState([]);
-    function addCart(item) {
+    const addCart = useCallback((item) => {
         setcartItem(cartItem => [...cartItem, item]);
         let div = document.createElement('div');
         div.classList.add('add_alert');
@@ -50,7 +50,7 @@ function App() {
         setTimeout(() => {
             div.remove();
         }, 4000)
-    }
+    }, [cartItem])
 
   function rating(rating) {
     let fullstar = <FontAwesomeIcon icon={faStar} color="#f5be27"/>
@@ -97,7 +97,7 @@ function App() {
         <Header cartItem={cartItem}/>
         <Routes>
             <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
-            <Route exact path="/books" element={<Books rating={rating}/>}/>
+            <Route exact path="/books" element={<Books rating={rating} />}/>
             <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem}/>} />
             <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
             <Route exact path="/search/:value" element={<Search cartItem={cartItem} addCart={addCart} rating={rating}/>}/>
