@@ -570,6 +570,8 @@ img {
   }
   #header {
     font-size: 1.2rem;
+    width: 100%;
+    height: 100px;
   }
   #header img {
     width: 30%;
@@ -641,6 +643,9 @@ img {
   }
   #empty {
     width: 80%;
+  }
+  #search_results {
+    top: 80px;
   }
   #code {
     top: 80vh;
