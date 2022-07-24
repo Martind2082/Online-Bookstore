@@ -80,20 +80,21 @@ body {
   height: 12vh;
   top: 30%;
   padding: 2%;
-  box-shadow: 0 5px 20px 5px rgb(184, 182, 182);
+  box-shadow: 5px 5px 10px 5px rgb(184, 182, 182);
   right: 0;
   transform: translateX(100%);
   animation: slidein 4s linear;
+  border-radius: 10px;
 }
 @keyframes slidein {
   0% {
     transform: translateX(100%);
   }
   10% {
-    transform: translateX(-10%);
+    transform: translateX(-5%);
   }
   100% {
-    transform: translateX(-10%);
+    transform: translateX(-5%);
     display: none;
   }
 }
@@ -731,5 +732,8 @@ img {
   }
   .result_item--info :nth-child(3) {
     margin-top: 0;
+  }
+  .add_alert {
+    top: 10vh;
   }
 }
