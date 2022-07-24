@@ -25,16 +25,29 @@ function App() {
         div.classList.add('add_alert');
         let img = document.createElement('img');
         img.src = item.image;
-        img.style.width = '50%';
+        img.style.width = '40%';
         img.style.height = '100%';
         let text = document.createElement('div');
         text.textContent = `${item.title} has been added to cart!`;
         text.style.display = 'flex';
         text.style.justifyContent = 'center';
         text.style.paddingLeft = '10%';
+        let X = document.createElement('div');
+        X.textContent = 'X';
+        X.style.position = 'absolute';
+        X.style.top = '7px';
+        X.style.right = '10px';
+        X.classList.add('hover');
+        let bottom = document.createElement('div');
+        bottom.classList.add('bottom');
+        div.append(bottom);
+        div.append(X);
         div.append(img);
         div.append(text);
         document.body.append(div);
+        X.onclick = () => {
+            div.remove();
+        }
         setTimeout(() => {
             div.remove();
         }, 4000)
