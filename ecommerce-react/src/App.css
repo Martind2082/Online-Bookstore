@@ -646,6 +646,7 @@ img {
   }
   #search_results {
     top: 80px;
+    width: 80%;
   }
   #code {
     top: 80vh;
