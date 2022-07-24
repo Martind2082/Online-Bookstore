@@ -707,6 +707,7 @@ img {
   }
   #payment {
     width: 80%;
+    font-size: 1.2rem;
   }
   #payment_message {
     font-size: 1.3rem;

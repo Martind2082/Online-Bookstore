@@ -203,7 +203,7 @@ const Cart = ({cartItem, setcartItem}) => {
                                     <p style={{fontWeight: 'bold'}}>{totalAmount(cartItem)} items</p>
                                     <p style={{fontWeight: 'bold'}}>Total: ${totalPrice(cartItem)}</p>
                                 </div>
-                                <button style={{marginTop: '1rem'}} onClick={() => setPurchased(true)} className='button'>Confirm purchase</button>
+                                <button style={{marginTop: '1rem', padding: '0.7rem 1.4rem'}} onClick={() => setPurchased(true)} className='button'>Confirm purchase</button>
                                 <div id='payment_message'>
                                     <p>No need to type anything. Just press confirm purchase</p>
                                 </div>

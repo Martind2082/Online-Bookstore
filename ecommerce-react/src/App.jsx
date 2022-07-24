@@ -29,9 +29,8 @@ function App() {
         img.style.height = '100%';
         let text = document.createElement('div');
         text.textContent = `${item.title} has been added to cart!`;
-        text.style.display = 'flex';
-        text.style.justifyContent = 'center';
-        text.style.paddingLeft = '10%';
+        text.style.paddingRight = '10%';
+        text.style.paddingLeft = '5%';
         let X = document.createElement('div');
         X.textContent = 'X';
         X.style.position = 'absolute';
