@@ -20,19 +20,27 @@ const Search = ({cartItem, addCart, rating}) => {
             <div id="results">
                 {selected.map(book => {
                     return <div key={book.id} className="result_item">
-                        <img src={book.image}/>
+                        <div className="result_item--img">
+                            <img src={book.image}/>
+                            <div>
+                                <p>{book.title}</p>
+                                <p>{rating(book.rating)}</p>
+                            </div>
+                        </div>
                         <div className="result_item--info">
                             <p>{book.title}</p>
                             <p>{rating(book.rating)}</p>
                             <p>{book.body}</p>
-                            <p>{book.price}</p>
-                            <button className="button" style={{padding: '2% 3%'}} onClick={() => {
-                                if (cartItem.includes(bookslist[book.id - 1])) {
-                                    navigate('/cart');
-                                    return;
-                                }
-                                addCart(bookslist[book.id - 1]);
-                            }}>{cartItem.includes(bookslist[book.id - 1]) ? 'Checkout' : 'Add to Cart'}</button>
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', marginBottom: '2rem'}}>
+                                <p style={{display: 'block'}}>{book.price}</p>
+                                <button className="button" style={{fontSize: '0.8rem', marginLeft: '5rem'}} onClick={() => {
+                                    if (cartItem.includes(bookslist[book.id - 1])) {
+                                        navigate('/cart');
+                                        return;
+                                    }
+                                    addCart(bookslist[book.id - 1]);
+                                }}>{cartItem.includes(bookslist[book.id - 1]) ? 'Checkout' : 'Add to Cart'}</button>
+                            </div>
                         </div>
                     </div>
                 })}
