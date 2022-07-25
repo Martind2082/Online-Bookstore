@@ -7,7 +7,7 @@ import Home from './Components/Home'
 import Bookslist from './Bookslist.json'
 import Books from './Components/Books'
 import Cart from './Components/Cart'
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, HashRouter} from 'react-router-dom';
 import Footer from './Components/Footer'
 import Bookinfo from './Components/Bookinfo'
 import { useCallback, useState } from 'react'
@@ -94,7 +94,7 @@ function App() {
 }
   return (
     <booksContext.Provider value={bookslist}>
-        <Router>
+        <HashRouter>
         <Header cartItem={cartItem}/>
         <Routes>
             <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
@@ -104,7 +104,7 @@ function App() {
             <Route exact path="/search/:value" element={<Search cartItem={cartItem} addCart={addCart} rating={rating}/>}/>
         </Routes>
         <Footer />
-        </Router>
+        </HashRouter>
     </booksContext.Provider>
   )
 }
