@@ -1,18 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus, faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faCreditCard, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import empty from '../Images/empty.png';
 import thanks from '../Images/thanks.png';
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
-const Cart = ({cartItem, setcartItem}) => {
+const Cart = ({cartItem, setcartItem, code, setCode}) => {
     const [purchased, setPurchased] = useState(false);
-    const [code, setCode] = useState(false);
     let navigate = useNavigate();
     function scrolltop() {
         window.scrollTo(0, 0);
     }
-
     function handleprice(price, amount) {
         price = price.slice(1) * amount;
         price = price.toString().split('');
@@ -49,7 +47,11 @@ const Cart = ({cartItem, setcartItem}) => {
         })
         return amt;
     }
-    function totalPrice(cartItem) {
+    const totalPrice = useMemo(() => {
+        if (cartItem.length === 0) {
+            return;
+        }
+        let saved = 0;
         let prices = [];
         cartItem.forEach(item => {
             prices.push(parseFloat(item.price.slice(1)) * item.amount);
@@ -57,17 +59,29 @@ const Cart = ({cartItem, setcartItem}) => {
         let total = prices.reduce((x, y) => {
             return x + y;
         });
+        if (total.toString().split('').includes('.') && total.toString().split('.')[1].length < 2) {
+            total = total + '0';
+        }
         if (code === true) {
             total = total * 0.9;
+            saved = total / 0.9 - total
+            if (saved.toString().split('').includes('.') && saved.toString().split('.')[1].length > 2) {
+                let parts = saved.toString().split('.');
+                saved = parts[0] + '.' + parts[1].slice(0, 2);
+            }
         }
-        if (total.toString().split('').includes('.') && total.toString().split('.')[1].length < 2) {
-            return total + '0';
+        console.log(total);
+        if (total.toString().split('').includes('.') && total.toString().split('.')[1].length > 2) {
+            let parts = total.toString().split('.');
+            total = parts[0] + '.' + parts[1].slice(0, 2);
         }
-        return total;
-    }
+        console.log(total);
+        return [total, saved];
+    }, [cartItem, code]);
+
     const promoinput = useRef();
-    function checkPromo(e) {
-        if (e.key === 'Enter' && code === false && promoinput.current.value.toLowerCase() === 'readreadread') {
+    function checkPromo(event) {
+        if (event.key === 'Enter' && code === false && promoinput.current.value.trim().toLowerCase() === 'readreadread') {
             setCode(true);
         }
     }
@@ -115,7 +129,7 @@ const Cart = ({cartItem, setcartItem}) => {
                                         }} className="remove">Remove</p>
                                     </div>
                                 </div>
-                                <p style={{alignSelf: 'start', fontSize: '1.5em', marginTop: '0', fontWeight: 'bold'}}>{handleprice(item.price, item.amount)}</p>
+                                <p id="cart_item--price">{handleprice(item.price, item.amount)}</p>
                             </div>
                         })}
                     </div>
@@ -124,13 +138,13 @@ const Cart = ({cartItem, setcartItem}) => {
                             <p>{totalAmount(cartItem)} items</p>
                             <p style={{fontSize: '1.2rem'}}>Tax: $0.00</p>
                             <p style={{fontSize: '1.2rem'}}>Shipping Cost: $0.00</p>
-                            <div style={{fontSize: '1.2rem'}}>{code ? 'saved 10% with promocode' : ''}</div>
-                            <p>Total: ${totalPrice(cartItem)}</p>
+                            <div style={{fontSize: '1.2rem'}}>{code ? 'saved $' + totalPrice[1] + ' with promocode' : ''}</div>
+                            <p>Total: ${totalPrice[0]}</p>
                             <div id="promo" style={{marginBottom: '10%'}}>
                                 <p style={{fontSize: '1rem', marginBottom: '0'}}>Promo Code</p>
                                 <input ref={promoinput} onKeyDown={() => checkPromo(event)}/>
                                 <button className="hover" onClick={() => {
-                                    if (code === false && promoinput.current.value.toLowerCase() === 'readreadread') {
+                                    if (code === false && promoinput.current.value.trim().toLowerCase() === 'readreadread') {
                                         setCode(true);
                                     }
                                 }}>{code ? 'Success' : 'Apply'}</button>
@@ -154,7 +168,8 @@ const Cart = ({cartItem, setcartItem}) => {
                             }}
                             className='button'>Okay</button>
                         </div> : <div>
-                            <p style={{fontSize: '2rem', fontWeight: 'bold'}}>Payment Info.</p>
+                            <FontAwesomeIcon onClick={() => document.getElementById('payment').style.display = 'none'} style={{position: 'absolute', right: '1rem', fontSize: '2rem'}} icon={faXmark}/>
+                            <p style={{fontSize: '2rem', fontWeight: 'bold', marginTop: '0.5rem'}}>Payment Info.</p>
                             <div>
                                 <p>Payment Method:</p>
                                 <input style={{marginRight: '0.5rem'}} type="radio" name="method"/><FontAwesomeIcon style={{marginRight: '0.5rem'}} icon={faCreditCard}/>Card <br/>
@@ -201,7 +216,7 @@ const Cart = ({cartItem, setcartItem}) => {
                                 </div>
                                 <div>
                                     <p style={{fontWeight: 'bold'}}>{totalAmount(cartItem)} items</p>
-                                    <p style={{fontWeight: 'bold'}}>Total: ${totalPrice(cartItem)}</p>
+                                    <p style={{fontWeight: 'bold'}}>Total: ${totalPrice[0]}</p>
                                 </div>
                                 <button style={{marginTop: '1rem', padding: '0.7rem 1.4rem'}} onClick={() => setPurchased(true)} className='button'>Confirm purchase</button>
                                 <div id='payment_message'>

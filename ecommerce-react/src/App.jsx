@@ -17,6 +17,7 @@ import Search from './Components/Search';
 export const booksContext = React.createContext();
 function App() {
     const {bookslist} = Bookslist;
+    const [code, setCode] = useState(false);
 
     const [cartItem, setcartItem] = useState([]);
     const addCart = useCallback((item) => {
@@ -98,7 +99,7 @@ function App() {
         <Routes>
             <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
             <Route exact path="/books" element={<Books rating={rating} />}/>
-            <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem}/>} />
+            <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem} code={code} setCode={setCode} />} />
             <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
             <Route exact path="/search/:value" element={<Search cartItem={cartItem} addCart={addCart} rating={rating}/>}/>
         </Routes>
