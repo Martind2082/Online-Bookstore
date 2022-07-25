@@ -58,10 +58,7 @@ const Cart = ({cartItem, setcartItem, code, setCode}) => {
         });
         let total = prices.reduce((x, y) => {
             return x + y;
-        });
-        if (total.toString().split('').includes('.') && total.toString().split('.')[1].length < 2) {
-            total = total + '0';
-        }
+        }); 
         if (code === true) {
             total = total * 0.9;
             saved = total / 0.9 - total
@@ -69,13 +66,17 @@ const Cart = ({cartItem, setcartItem, code, setCode}) => {
                 let parts = saved.toString().split('.');
                 saved = parts[0] + '.' + parts[1].slice(0, 2);
             }
+            if (saved.toString().split('').includes('.') && saved.toString().split('.')[1].length < 2) {
+                saved = saved + '0';
+            }
         }
-        console.log(total);
         if (total.toString().split('').includes('.') && total.toString().split('.')[1].length > 2) {
             let parts = total.toString().split('.');
             total = parts[0] + '.' + parts[1].slice(0, 2);
         }
-        console.log(total);
+        if (total.toString().split('').includes('.') && total.toString().split('.')[1].length < 2) {
+            total = total + '0';
+        }
         return [total, saved];
     }, [cartItem, code]);
 
