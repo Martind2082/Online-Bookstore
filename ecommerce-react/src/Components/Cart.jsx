@@ -3,9 +3,11 @@ import { faMinus, faPlus, faCreditCard, faXmark } from '@fortawesome/free-solid-
 import { useNavigate } from 'react-router-dom';
 import empty from '../Images/empty.png';
 import thanks from '../Images/thanks.png';
-import { useMemo, useRef, useState } from 'react';
+import { useContext, useMemo, useRef, useState } from 'react';
+import { Firebasecontext } from '../Firebasecontexts';
 
 const Cart = ({cartItem, setcartItem, code, setCode}) => {
+    const {signinwithgoogle, user} = useContext(Firebasecontext);
     const [purchased, setPurchased] = useState(false);
     let navigate = useNavigate();
     function scrolltop() {
@@ -86,6 +88,14 @@ const Cart = ({cartItem, setcartItem, code, setCode}) => {
             setCode(true);
         }
     }
+
+    const checkout = () => {
+        if (user) {
+            document.getElementById('payment').style.display = 'block';
+        } else {
+            signinwithgoogle();
+        }
+    }
     return (
         <div id='cart'>
             <p style={{fontWeight: 'bold', fontSize: '2.5rem', marginBottom: '-5px', marginLeft: '1rem'}}>Cart</p>
@@ -150,7 +160,7 @@ const Cart = ({cartItem, setcartItem, code, setCode}) => {
                                     }
                                 }}>{code ? 'Success' : 'Apply'}</button>
                             </div>
-                            <button style={{marginBottom: '1rem'}} className='button' onClick={() => document.getElementById('payment').style.display = 'block'}>Proceed to check out</button>
+                            <button style={{marginBottom: '1rem'}} className='button' onClick={checkout}>{user ? 'Proceed to check out' : 'Sign in to purchase'}</button>
                         </div>
                     </div>
                     <div id='payment'>
