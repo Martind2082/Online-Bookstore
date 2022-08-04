@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { booksContext } from "../App";
@@ -16,7 +18,10 @@ const Search = ({cartItem, addCart, rating}) => {
     }
     return ( 
         <div id='search'>
-            <h3 style={{position: 'relative', left: '10%', fontSize: '1.5rem'}}>{selected.length} results for "{value}"</h3>
+            <div id="search_top">
+                <div id='backtohome' onClick={() => navigate('/')}><FontAwesomeIcon icon={faChevronLeft} />Back to Home</div>
+                <h3>{selected.length} results for "{value}"</h3>
+            </div>
             <div id="results">
                 {selected.map(book => {
                     return <div key={book.id} className="result_item">

@@ -102,7 +102,7 @@ function App() {
                 <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
                 <Route exact path="/books" element={<Books rating={rating} />}/>
                 <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem} code={code} setCode={setCode} />} />
-                <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
+                <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem} rating={rating}/>}/>
                 <Route exact path="/search/:value" element={<Search cartItem={cartItem} addCart={addCart} rating={rating}/>}/>
             </Routes>
             <Footer />

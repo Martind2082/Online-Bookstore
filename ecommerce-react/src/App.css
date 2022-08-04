@@ -536,6 +536,10 @@ option {
   display: flex;
   padding-top: 10vh;
   padding-bottom: 5vh;
+  flex-direction: column;
+}
+#bookinfo_first {
+  display: flex;
 }
 #bookinfo_left {
   display: flex;
@@ -551,6 +555,7 @@ option {
   display: flex;
   flex-direction: column;
   width: 50%;
+  font-size: 1.2rem;
 }
 #buttons {
   display: flex;
@@ -568,7 +573,49 @@ option {
 #leftarrow {
   margin-right: 5%;
 }
+#bookinfo_second {
+  display: flex;
+  flex-direction: column;
+}
+#recommended_title {
+  margin-left: 5rem;
+  font-size: 2rem;
+}
+.recommended {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  grid-auto-rows: 80vh;
+  justify-content: center;
+  grid-gap: 3%;
+  font-size: 1.2rem;
+}
+.rbook {
+  display: flex;
+  flex-direction: column;
+}
+.rbook img {
+  height: 60%;
+}
 
+#search_top {
+  width: 40%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 6rem;
+  font-size: 1.3rem;
+}
+#backtohome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 33%;
+  font-weight: bold;
+}
+#backtohome:hover {
+  cursor: pointer;
+}
 #results {
   width: 90%;
   margin: auto;
@@ -624,10 +671,12 @@ option {
     margin-right: 1rem;
   }
   .header_mobile_menu {
-    display: none;
+    visibility: none;
+    display: flex;
     position: absolute;
+    padding-top: 2rem;
     width: 100%;
-    height: 80vh;
+    height: 75vh;
     flex-direction: column;
     align-items: center;
     top: 6rem;
@@ -635,12 +684,26 @@ option {
     z-index: 2;
     background: rgb(73, 70, 70);
     color: white;
+    font-size: 2rem;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all ease 300ms;
   }
   #header_burger {
     font-size: 2rem;
   }
   .visible {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0%);
+  }
+  .link {
+    color: white;
+  }
+  #browsebooks {
+    margin-top: 1rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 6vh;
   }
 
 
@@ -660,12 +723,18 @@ option {
   #welcome_top :nth-child(2) {
     margin-top: 2rem;
   }
+  #featured_title {
+    font-size: 2rem;
+  }
   #featureddeal {
     flex-direction: column;
   }
   #featured, #deal {
     width: 100%;
     height: 80vh;
+  }
+  #deal h1 {
+    font-size: 2rem;
   }
   #discount_books {
     grid-template-columns: repeat(2, 30%);
@@ -697,16 +766,32 @@ option {
   #buttons {
     width: 100%;
   }
+  #bookinfo_first {
+    flex-direction: column;
+    align-items: center;
+  }
   #bookinfo_left {
     width: 70%;
     height: 40vh;
   }
   #bookinfo_right {
     width: 80%;
-  }
-  #bookinfo_right {
     position: relative;
     top: -40px;
+    font-size: 1rem;
+  }
+  #recommended_title {
+    font-size: 1.2rem;
+    margin-left: 3rem;
+    text-align: left;
+  }
+  .recommended {
+    grid-template-columns: repeat(2, 45%);
+    grid-auto-rows: 60vh;
+    font-size: 1rem;
+  }
+  .recommended p {
+    margin: 0.5rem;
   }
   #books_container {
     grid-template-columns: repeat(2, 40%);
@@ -723,7 +808,9 @@ option {
   }
   #code {
     top: 80vh;
-    width: 100%;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
     height: 10vh;
     text-align: center;
   }
@@ -796,6 +883,7 @@ option {
   }
   .result_item--img img {
     width: 30%;
+    margin-right: 1rem;
   }
   .result_item--img p {
     display: block;
@@ -808,5 +896,15 @@ option {
   }
   #footer div {
     width: 70%;
+  }
+  #search_top {
+    padding: 1.5rem 0 0 0;
+    margin-left: 3rem;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+  }
+  #backtohome {
+    width: 45%;
   }
 }

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faBars } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useContext, useRef } from 'react';
 import { Firebasecontext } from '../Firebasecontexts';
 
@@ -15,8 +15,12 @@ const Header = ({cartItem}) => {
     }
     const mobilemenu = useRef();
     const togglemenu = () => {
-        console.log(mobilemenu.current.classList);
         mobilemenu.current.classList.toggle('visible');
+        if (mobilemenu.current.classList.contains('visible')) {
+            document.querySelector('html').style.overflowY = 'hidden';
+        } else {
+            document.querySelector('html').style.overflowY = 'auto';
+        }
     }
 
     let navigate = useNavigate();
@@ -41,9 +45,9 @@ const Header = ({cartItem}) => {
                 <FontAwesomeIcon onClick={togglemenu} id="header_burger" className='mobile' icon={faBars} />
             </div>
             <div ref={mobilemenu} className="header_mobile_menu mobile">
-                <p>Home</p>
-                <p>Books</p>
-                <p>Cart</p>
+                <Link className='link' to="/"><p onClick={togglemenu}>Home</p></Link>
+                <Link className='link' to="/books"><p onClick={togglemenu}>Books</p></Link>
+                <Link className='link' to="/cart"><p onClick={togglemenu}>Cart</p></Link>
             </div>
         </div>
      );
