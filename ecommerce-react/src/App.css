@@ -54,6 +54,12 @@ body {
   width: 30%;
   height: 100%;
 }
+#header button {
+  padding: 0.5rem 1rem;
+}
+.mobile {
+  display: none;
+}
 #cart_icon--container:hover {
   transform: scale(1.1);
   cursor: pointer;
@@ -132,18 +138,21 @@ body {
 }
 #welcome_top {
   font-weight: bold;
-  width: 50%; 
+  width: 100%; 
   margin: auto;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   font-size: 2rem;
 }
 #welcome_top :nth-child(1) {
   font-size: 2.5rem;
   height: 1rem;
-  font-weight: 'bold'
+  font-weight: 'bold';
+  width: 100%;
+  text-align: center; 
 }
 #browsebooks {
   margin-bottom: 10vh;
@@ -592,6 +601,7 @@ option {
     overflow-x: hidden;
   }
   #header {
+    position: relative;
     font-size: 1.2rem;
     width: 100%;
     height: 100px;
@@ -601,9 +611,39 @@ option {
     height: 80px;
   }
   #header_right {
-    width: 40%;
-    margin-right: 5%;
+    display: none;
   }
+  .mobile {
+    display: block;
+  }
+  #header_right_mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 40%;
+    margin-right: 1rem;
+  }
+  .header_mobile_menu {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 80vh;
+    flex-direction: column;
+    align-items: center;
+    top: 6rem;
+    left: 0;
+    z-index: 2;
+    background: rgb(73, 70, 70);
+    color: white;
+  }
+  #header_burger {
+    font-size: 2rem;
+  }
+  .visible {
+    display: flex;
+  }
+
+
   #welcome_top {
     width: 100%;
     font-size: 1rem;
@@ -615,6 +655,10 @@ option {
   }
   #welcome_top :nth-child(1) {
     font-size: 1.5rem;
+    text-align: center;
+  }
+  #welcome_top :nth-child(2) {
+    margin-top: 2rem;
   }
   #featureddeal {
     flex-direction: column;

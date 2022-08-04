@@ -9,8 +9,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { booksContext } from '../App';
+import { Firebasecontext } from '../Firebasecontexts';
 
 const Home = ({rating, addCart, cartItem}) => {
+    const {user} = useContext(Firebasecontext);
     const bookslist = useContext(booksContext);
     const booknames = [];
     bookslist.forEach(book => {
@@ -75,7 +77,7 @@ const Home = ({rating, addCart, cartItem}) => {
             <section id='welcome'>
                 <div id='welcome_library--background'>
                     <div id='welcome_top'>
-                        <p>Welcome to the Bookstore!</p>
+                        <p>{user ? `Welcome to the Bookstore, ${user.displayName}!` : 'Welcome to the Bookstore!'}</p>
                         <p>Find your dream book</p>
                         <button onClick={() => navigate("/books")} className="button hover" id='browsebooks'>Browse Now</button>
                     </div>

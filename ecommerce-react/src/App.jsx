@@ -13,6 +13,7 @@ import Bookinfo from './Components/Bookinfo'
 import { useCallback, useState } from 'react'
 import React from 'react';
 import Search from './Components/Search';
+import Firebasecontext from './Firebasecontexts.jsx';
 
 export const booksContext = React.createContext();
 function App() {
@@ -93,19 +94,21 @@ function App() {
     }
 }
   return (
-    <booksContext.Provider value={bookslist}>
-        <HashRouter>
-        <Header cartItem={cartItem}/>
-        <Routes>
-            <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
-            <Route exact path="/books" element={<Books rating={rating} />}/>
-            <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem} code={code} setCode={setCode} />} />
-            <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
-            <Route exact path="/search/:value" element={<Search cartItem={cartItem} addCart={addCart} rating={rating}/>}/>
-        </Routes>
-        <Footer />
-        </HashRouter>
-    </booksContext.Provider>
+    <Firebasecontext>
+        <booksContext.Provider value={bookslist}>
+            <HashRouter>
+            <Header cartItem={cartItem}/>
+            <Routes>
+                <Route exact path="/" element={<Home rating={rating} addCart={addCart} cartItem={cartItem}/>} />
+                <Route exact path="/books" element={<Books rating={rating} />}/>
+                <Route exact path="/cart" element={<Cart cartItem={cartItem} setcartItem={setcartItem} code={code} setCode={setCode} />} />
+                <Route exact path="/books/:id" element={<Bookinfo addCart={addCart} cartItem={cartItem}/>}/>
+                <Route exact path="/search/:value" element={<Search cartItem={cartItem} addCart={addCart} rating={rating}/>}/>
+            </Routes>
+            <Footer />
+            </HashRouter>
+        </booksContext.Provider>
+    </Firebasecontext>
   )
 }
 
