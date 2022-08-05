@@ -559,16 +559,18 @@ option {
 }
 #buttons {
   display: flex;
-  width: 70%;
+  width: 100%;
   justify-content: space-around;
   align-items: center;
-}
-#buttons p {
-  width: 50%;
 }
 #buttons p:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+#buttons_button--left {
+  display: flex;
+  width: 50%;
+  align-items: center;
 }
 #leftarrow {
   margin-right: 5%;
@@ -576,6 +578,74 @@ option {
 #bookinfo_second {
   display: flex;
   flex-direction: column;
+}
+.review_links {
+  font-size: 1rem;
+  color: rgb(235, 182, 84);
+}
+.review_links:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+#reviews {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80vh;
+  border: 5px solid rgb(98, 98, 235);
+  background: white;
+}
+#reviews form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#writereview {
+  width: 80%;
+  height: 30vh;
+  border: 2px solid black;
+  resize: none;
+  font-size: 1.5rem;
+}
+#rating {
+  display: flex;
+  height: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  font-size: 1.2rem;
+}
+#rating select {
+  font-size: 1.2rem;
+}
+#reviews input {
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+.review_top {
+  display: flex;
+  width: max-content;
+  justify-content: space-between;
+  align-items: center;
+}
+.review_bottom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.review img {
+  width: 2rem;
+  border-radius: 50%;
+  margin-right: 1rem;
 }
 #recommended_title {
   margin-left: 5rem;
@@ -765,6 +835,13 @@ option {
   }
   #buttons {
     width: 100%;
+  }
+  #buttons p {
+    text-align: left;
+    width: max-content;
+  }
+  #buttons_button--left {
+    width: 50%;
   }
   #bookinfo_first {
     flex-direction: column;

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth';
-import {auth, db} from './Firebase.js';
+import {auth} from './Firebase.js';
 
 export const Firebasecontext = createContext();
 const FirebaseContexts = ({children}) => {
@@ -23,6 +23,7 @@ const FirebaseContexts = ({children}) => {
     const signout = () => {
         signOut(auth);
     }
+
 
 
     return (
