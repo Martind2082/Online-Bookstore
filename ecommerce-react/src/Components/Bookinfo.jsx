@@ -137,11 +137,12 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                             <div className='review_top'>
                                 <img src={review.profilepic} />
                                 <div>{review.author}{review.author === user?.displayName ? " (you)" : ""}</div>
-                                <div style={{marginLeft: '1rem', width: 'maxContent'}}>{rating(review.rating)}</div>
+                                <div id="reviewrating">{rating(review.rating)}</div>
                                 {
                                     review.author === user?.displayName ? <p onClick={() => deletereview(review.id)} id="deletereview" className='review_links'>Delete</p> : ''
                                 }
                             </div>
+                            <div id="reviewrating_mobile">{rating(review.rating)}</div>
                             <div id="deletereview_mobile" className='review_links' onClick={() => deletereview(review.id)}>
                                 {
                                     review.author === user?.displayName ? 'Delete' : ''

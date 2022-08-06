@@ -658,6 +658,16 @@ option {
 #deletereview_mobile {
   display: none;
 }
+#reviewrating {
+  display: none;
+}
+#reviewrating_mobile {
+  display: flex;
+}
+#reviewrating {
+  margin-left: 1rem;
+  width: max-content;
+}
 #writereview {
   width: 70%;
   height: 20vh;
