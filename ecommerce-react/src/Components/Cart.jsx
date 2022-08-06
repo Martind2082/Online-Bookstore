@@ -179,7 +179,7 @@ const Cart = ({cartItem, setcartItem, code, setCode}) => {
                             }}
                             className='button'>Okay</button>
                         </div> : <div>
-                            <FontAwesomeIcon onClick={() => document.getElementById('payment').style.display = 'none'} style={{position: 'absolute', right: '1rem', fontSize: '2rem'}} icon={faXmark}/>
+                            <FontAwesomeIcon className="hover" onClick={() => document.getElementById('payment').style.display = 'none'} style={{position: 'absolute', right: '1rem', fontSize: '2rem'}} icon={faXmark}/>
                             <p style={{fontSize: '2rem', fontWeight: 'bold', marginTop: '0.5rem'}}>Payment Info.</p>
                             <div>
                                 <p>Payment Method:</p>

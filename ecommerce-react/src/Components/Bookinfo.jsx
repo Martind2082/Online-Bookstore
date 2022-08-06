@@ -1,33 +1,38 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useParams } from "react-router-dom";
 import { booksContext } from '../App';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { db } from '../Firebase';
-import {collection, onSnapshot} from 'firebase/firestore';
+import {collection, onSnapshot, addDoc, serverTimestamp} from 'firebase/firestore';
 import { Firebasecontext } from '../Firebasecontexts';
 
 const Bookinfo = ({addCart, cartItem, rating}) => {
     const bookslist = useContext(booksContext);
     let navigate = useNavigate();
     const {id} = useParams();
+    const reviewsRef = useRef();
+    const ratingRef = useRef();
+    const [reviewvalue, setReviewvalue] = useState('');
 
     let rbook1; let rbook2; let rbook3; let rbook4;
     let rarray = [];
-    const getrbooks = () => {
-        rbook1 = bookslist[Math.floor(Math.random() * bookslist.length/4)];
-        rbook2 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length/4)];
-        rbook3 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length/2)];
-        rbook4 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length*0.75)];
-        rarray = [rbook1, rbook2, rbook3, rbook4];
-    }
-    getrbooks();
-    while (rbook1 === rbook2 || rbook2 === rbook3 || rbook3 === rbook4) {
-        getrbooks();
-    }
 
-    const {user} = useContext(Firebasecontext);
+        const getrbooks = () => {
+            rbook1 = bookslist[Math.floor(Math.random() * bookslist.length/4)];
+            rbook2 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length/4)];
+            rbook3 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length/2)];
+            rbook4 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length*0.75)];
+            rarray = [rbook1, rbook2, rbook3, rbook4];
+        }
+        getrbooks();
+        while (rbook1 === rbook2 || rbook2 === rbook3 || rbook3 === rbook4) {
+            getrbooks();
+        }
+
+
+    const {user, signinwithgoogle} = useContext(Firebasecontext);
     const [reviews, setReviews] = useState([]);
     const colRef = collection(db, id);
     useEffect(() => {
@@ -39,37 +44,82 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
             setReviews(reviews);
         });
         return unsub;
-    }, [])
+    }, []);
+
+    const reviewsclick = () => {
+        if (user) {
+            reviewsRef.current.style.display = 'block';
+        } else {
+            document.getElementById('needtosignin').style.display = 'flex';
+        }
+    }
+
+    const addreview = (e) => {
+        e.preventDefault();
+        if (reviewvalue === '') {
+            return;
+        }
+        if (reviewvalue.length > 50) {
+            return;
+        }
+        if (ratingRef.current.value === 'select') {
+            return;
+        }
+        addDoc(colRef, {
+            createdAt: serverTimestamp(),
+            text: reviewvalue,
+            author: user.displayName,
+            profilepic: user.photoURL,
+            rating: ratingRef.current.value
+        }).then(() => {
+            setReviewvalue('');
+        })
+    }
+
     return (
         <div id='bookinfo'>
-            <div id="reviews">
-                <div id="rating">
-                    <p>Rate this book</p>
-                    <select defaultValue="select" required>
-                        <option value="select" disabled>select</option>
-                        <option value="0.5">0.5</option>
-                        <option value="1">1</option>
-                        <option value="1.5">1.5</option>
-                        <option value="2">2</option>
-                        <option value="2.5">2.5</option>
-                        <option value="3">3</option>
-                        <option value="3.5">3.5</option>
-                        <option value="4">4</option>
-                        <option value="4.5">4.5</option>
-                        <option value="5">5</option>
-                    </select>
-                    <p>stars</p>
+            <div id="needtosignin">
+                <FontAwesomeIcon onClick={() => document.getElementById('needtosignin').style.display = 'none'} className='hover' style={{position: 'absolute', top: '1rem', right: '1rem', fontSize: '2rem'}} icon={faXmark}/>
+                <p>To leave a review, please sign in with google</p>
+                <button style={{padding: '0.5rem 1rem'}} onClick={() => {document.getElementById('needtosignin').style.display = 'none'; signinwithgoogle()}} className='button'>Sign in</button>
+            </div>
+            <div ref={reviewsRef} id="reviews">
+                <FontAwesomeIcon onClick={() => reviewsRef.current.style.display = 'none'} className='hover' style={{position: 'absolute', top: '1rem', right: '1rem', fontSize: '2rem'}} icon={faXmark}/>
+                {
+                    user ? <div> 
+                        <div id="rating">
+                        <p>Rate this book</p>
+                        <select ref={ratingRef} disabled={!user} defaultValue="select" required>
+                            <option value="select" disabled>select</option>
+                            <option value="0.5">0.5</option>
+                            <option value="1">1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                            <option value="2.5">2.5</option>
+                            <option value="3">3</option>
+                            <option value="3.5">3.5</option>
+                            <option value="4">4</option>
+                            <option value="4.5">4.5</option>
+                            <option value="5">5</option>
+                        </select>
+                        <p>stars</p>
+                    </div>
+                    <form onSubmit={(e) => addreview(e)}>
+                        <textarea value={reviewvalue} onChange={(e => setReviewvalue(e.target.value))} id="writereview" type="text" placeholder='write a review...'></textarea>
+                        <div style={{color: reviewvalue.length > 50 ? 'red' : 'black'}}>{reviewvalue.length} out of 50 characters used</div>
+                        <input className='button' type="submit" value='Leave review'/>
+                    </form>
+                </div> : <div style={{display: 'flex', flexDirection: 'column', padding: '1rem 0', justifyContent: 'center', alignItems: 'center'}}>
+                    <p>To leave a review, please sign in with google</p>
+                    <button style={{padding: '0.5rem 1rem'}} onClick={signinwithgoogle} className='button'>Sign in</button>
                 </div>
-                <form>
-                    <textarea id="writereview" type="text" placeholder='write a review...'></textarea>
-                    <input className='button' type="submit" />
-                </form>
+                }
                 <div>
-                    {reviews.length === 0 ? "There are no reviews" : reviews.map(review => {
+                    {reviews.length === 0 ? "There are currently no reviews" : reviews.map(review => {
                         return <div className='review' key={review.id}>
                             <div className='review_top'>
-                                <img src={user.photoURL} />
-                                <div>{user.displayName}</div>
+                                <img src={user?.photoURL} />
+                                <div>{user?.displayName}</div>
                             </div>
                             <div className='review_bottom'>
                                 <div style={{display: 'flex', width: 'maxContent'}}>
@@ -91,8 +141,8 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                     <p>{bookslist[id - 1].body}</p>
                     <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
                         <div>{rating(bookslist[id - 1].rating)}</div>
-                        <div className='review_links'>{reviews.length} reviews</div>
-                        <div className='review_links'>Leave a review</div>
+                        <div onClick={() => reviewsRef.current.style.display = 'block'} className='review_links'>{reviews.length} reviews</div>
+                        <div onClick={reviewsclick} className='review_links'>Leave a review</div>
                     </div>
                     <p>{bookslist[id - 1].price}</p>
                     <div id='buttons'>
@@ -113,6 +163,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                     {
                         rarray.map(rbook => {
                             return <div key={rbook.id} className="rbook">
+                                <div>hi</div>
                                 <img src={rbook.image} />
                                 <p>{rbook.title}</p>
                                 <div>{rating(rbook.rating)}</div>

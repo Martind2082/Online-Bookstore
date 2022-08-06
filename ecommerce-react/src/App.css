@@ -26,6 +26,21 @@ body {
 .hover:hover {
   cursor: pointer;
 }
+#needtosignin {
+  display: none;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  border: 3px solid rgb(98, 98, 235);
+  justify-content: center;
+  align-items: center;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 1.5rem;
+}
 
 #header {
   position: relative;
@@ -52,6 +67,7 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 30%;
+  min-width: 350px;
   height: 100%;
 }
 #header button {
@@ -592,10 +608,14 @@ option {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80vh;
+  width: 70%;
+  height: 70vh;
   border: 5px solid rgb(98, 98, 235);
   background: white;
+  padding: 1.5rem;
+  display: none;
+  overflow-y: auto;
+  z-index: 1;
 }
 #reviews form {
   display: flex;
@@ -604,22 +624,28 @@ option {
   justify-content: center;
 }
 #writereview {
-  width: 80%;
-  height: 30vh;
+  width: 70%;
+  height: 20vh;
   border: 2px solid black;
   resize: none;
   font-size: 1.5rem;
+  margin-top: 2rem;
 }
 #rating {
+  margin-top: 1rem;
   display: flex;
   height: 3rem;
   justify-content: space-between;
   align-items: center;
-  width: 40%;
+  width: max-content;
   font-size: 1.2rem;
 }
 #rating select {
   font-size: 1.2rem;
+  padding: 0.2rem;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: 0 1rem;
 }
 #reviews input {
   padding: 0.5rem 1rem;
@@ -667,6 +693,7 @@ option {
 .rbook img {
   height: 60%;
 }
+
 
 #search_top {
   width: 40%;
