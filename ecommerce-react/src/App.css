@@ -41,6 +41,35 @@ body {
   text-align: center;
   font-size: 1.5rem;
 }
+.popup {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(237, 122, 122);
+  display: flex;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 20px;
+  animation: popup 2s linear;
+  top: -5rem;
+  padding: 0.5rem 3rem;
+  z-index: 2;
+  text-align: center;
+}
+@keyframes popup {
+  0% {
+    top: -5rem;
+  }
+  15% {
+    top: 2rem;
+  }
+  85% {
+    top: 2rem;
+  }
+  100% {
+    top: -5rem;
+  }
+}
 
 #header {
   position: relative;
@@ -623,6 +652,12 @@ option {
   align-items: center;
   justify-content: center;
 }
+#deletereview {
+  margin-left: 1rem;
+}
+#deletereview_mobile {
+  display: none;
+}
 #writereview {
   width: 70%;
   height: 20vh;
@@ -640,6 +675,10 @@ option {
   width: max-content;
   font-size: 1.2rem;
 }
+#amountofreviews {
+  margin-left: 3rem;
+  font-size: 1.5rem;
+}
 #rating select {
   font-size: 1.2rem;
   padding: 0.2rem;
@@ -655,6 +694,7 @@ option {
   display: flex;
   flex-direction: column;
   margin-left: 2rem;
+  margin-bottom: 1rem;
 }
 .review_top {
   display: flex;
@@ -888,6 +928,31 @@ option {
     font-size: 1.2rem;
     margin-left: 3rem;
     text-align: left;
+  }
+  #amountofreviews {
+    text-align: left;
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  #deletereview {
+    display: none;
+  }
+  #deletereview_mobile {
+    display: block;
+    text-align: left;
+    margin: 0;
+    font-size: 1rem;
+  }
+  #rating {
+    font-size: 1rem;
+  }
+  #rating select {
+    font-size: 1rem;
+  }
+  .review {
+    margin-left: 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
   .recommended {
     grid-template-columns: repeat(2, 45%);

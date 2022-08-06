@@ -5,7 +5,7 @@ import { booksContext } from '../App';
 import { useContext, useEffect, useRef, useState } from 'react';
 
 import { db } from '../Firebase';
-import {collection, onSnapshot, addDoc, serverTimestamp} from 'firebase/firestore';
+import {collection, onSnapshot, addDoc, serverTimestamp, query, orderBy, doc, deleteDoc, updateDoc} from 'firebase/firestore';
 import { Firebasecontext } from '../Firebasecontexts';
 
 const Bookinfo = ({addCart, cartItem, rating}) => {
@@ -16,32 +16,23 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
     const ratingRef = useRef();
     const [reviewvalue, setReviewvalue] = useState('');
 
-    let rbook1; let rbook2; let rbook3; let rbook4;
-    let rarray = [];
+    let rarray = [bookslist[1], bookslist[7], bookslist[2], bookslist[6]];
 
-        const getrbooks = () => {
-            rbook1 = bookslist[Math.floor(Math.random() * bookslist.length/4)];
-            rbook2 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length/4)];
-            rbook3 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length/2)];
-            rbook4 = bookslist[Math.floor(Math.random() * bookslist.length/4 + bookslist.length*0.75)];
-            rarray = [rbook1, rbook2, rbook3, rbook4];
-        }
-        getrbooks();
-        while (rbook1 === rbook2 || rbook2 === rbook3 || rbook3 === rbook4) {
-            getrbooks();
-        }
-
+    function scrolltop() {
+        window.scrollTo(0, 0);
+    }
 
     const {user, signinwithgoogle} = useContext(Firebasecontext);
     const [reviews, setReviews] = useState([]);
     const colRef = collection(db, id);
+    const q = query(colRef, orderBy('createdAt', 'desc'))
     useEffect(() => {
-        const reviews = [];
-        const unsub = onSnapshot(colRef, (snapshot) => {
+        const unsub = onSnapshot(q, (snapshot) => {
+            const reviewscopy = [];
             snapshot.docs.forEach(doc => {
-                reviews.push({...doc.data(), id: doc.id});
+                reviewscopy.push({...doc.data(), id: doc.id});
             });
-            setReviews(reviews);
+            setReviews(reviewscopy);
         });
         return unsub;
     }, []);
@@ -57,12 +48,33 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
     const addreview = (e) => {
         e.preventDefault();
         if (reviewvalue === '') {
+            let div = document.createElement('div');
+            div.classList.add('popup');
+            div.textContent = 'Please leave a review';
+            document.body.append(div);
+            setTimeout(() => {
+                div.remove();
+            }, 2000)
             return;
         }
-        if (reviewvalue.length > 50) {
+        if (reviewvalue.length > 100) {
+            let div = document.createElement('div');
+            div.classList.add('popup');
+            div.textContent = 'Please shorten your review';
+            document.body.append(div);
+            setTimeout(() => {
+                div.remove();
+            }, 2000)
             return;
         }
         if (ratingRef.current.value === 'select') {
+            let div = document.createElement('div');
+            div.classList.add('popup');
+            div.textContent = 'Please select a star rating';
+            document.body.append(div);
+            setTimeout(() => {
+                div.remove();
+            }, 2000)
             return;
         }
         addDoc(colRef, {
@@ -74,6 +86,10 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
         }).then(() => {
             setReviewvalue('');
         })
+    }
+
+    function deletereview(bookid) {
+        deleteDoc(doc(db, id, bookid))
     }
 
     return (
@@ -106,7 +122,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                     </div>
                     <form onSubmit={(e) => addreview(e)}>
                         <textarea value={reviewvalue} onChange={(e => setReviewvalue(e.target.value))} id="writereview" type="text" placeholder='write a review...'></textarea>
-                        <div style={{color: reviewvalue.length > 50 ? 'red' : 'black'}}>{reviewvalue.length} out of 50 characters used</div>
+                        <div style={{color: reviewvalue.length > 100 ? 'red' : 'black'}}>{reviewvalue.length} out of 100 characters used</div>
                         <input className='button' type="submit" value='Leave review'/>
                     </form>
                 </div> : <div style={{display: 'flex', flexDirection: 'column', padding: '1rem 0', justifyContent: 'center', alignItems: 'center'}}>
@@ -114,19 +130,26 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                     <button style={{padding: '0.5rem 1rem'}} onClick={signinwithgoogle} className='button'>Sign in</button>
                 </div>
                 }
-                <div>
+                <div id="amountofreviews">{reviews.length === 0 ? '' : reviews.length + ' reviews'}</div>
+                <div style={{marginTop: '1rem'}}>
                     {reviews.length === 0 ? "There are currently no reviews" : reviews.map(review => {
                         return <div className='review' key={review.id}>
                             <div className='review_top'>
-                                <img src={user?.photoURL} />
-                                <div>{user?.displayName}</div>
+                                <img src={review.profilepic} />
+                                <div>{review.author}{review.author === user?.displayName ? " (you)" : ""}</div>
+                                <div style={{marginLeft: '1rem', width: 'maxContent'}}>{rating(review.rating)}</div>
+                                {
+                                    review.author === user?.displayName ? <p onClick={() => deletereview(review.id)} id="deletereview" className='review_links'>Delete</p> : ''
+                                }
+                            </div>
+                            <div id="deletereview_mobile" className='review_links' onClick={() => deletereview(review.id)}>
+                                {
+                                    review.author === user?.displayName ? 'Delete' : ''
+                                }
                             </div>
                             <div className='review_bottom'>
-                                <div style={{display: 'flex', width: 'maxContent'}}>
-                                    <div style={{marginRight: '1rem', width: 'maxContent'}}>{rating(review.rating)}</div>
-                                    <div>Posted on {new Date(review.createdAt.seconds * 1000).toString().split(' ').slice(0, 4).join(' ')}</div>  
-                                </div>
-                                <div>{review.text}</div>
+                                    <div style={{color: '#6a6c6e'}}>{new Date(review.createdAt?.seconds * 1000).toString().split(' ').slice(0, 4).join(' ') === 'Invalid Date' ? "" : "Posted on " + new Date(review.createdAt?.seconds * 1000).toString().split(' ').slice(0, 4).join(' ')}</div>
+                                    <div>{review.text}</div>
                             </div>
                         </div>
                     })}
@@ -162,8 +185,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                 <div className='recommended'>
                     {
                         rarray.map(rbook => {
-                            return <div key={rbook.id} className="rbook">
-                                <div>hi</div>
+                            return <div onClick={() => {navigate(`/books/${rbook.id}`); scrolltop()}} key={rbook.id} className="rbook hover">
                                 <img src={rbook.image} />
                                 <p>{rbook.title}</p>
                                 <div>{rating(rbook.rating)}</div>
