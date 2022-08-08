@@ -648,7 +648,7 @@ option {
   padding: 1.5rem;
   display: none;
   overflow-y: auto;
-  z-index: 30px;
+  z-index: 1;
 }
 #reviews form {
   display: flex;

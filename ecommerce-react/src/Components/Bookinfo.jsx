@@ -188,7 +188,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                 <div className='recommended'>
                     {
                         rarray.map(rbook => {
-                            return <div onClick={() => {navigate(`/books/${rbook.id}`); scrolltop(); setReviewsrerun(!reviewsrerun)}} key={rbook.id} className="rbook hover">
+                            return <div onClick={() => {navigate(`/books/${rbook.id}`); scrolltop(); setReviewsrerun(!reviewsrerun); reviewsRef.current.style.display = 'none';}} key={rbook.id} className="rbook hover">
                                 <img src={rbook.image} />
                                 <p>{rbook.title}</p>
                                 <div>{rating(rbook.rating)}</div>
