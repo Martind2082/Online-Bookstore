@@ -41,6 +41,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
         if (user) {
             reviewsRef.current.style.display = 'block';
         } else {
+            reviewsRef.current.style.display = 'none';
             document.getElementById('needtosignin').style.display = 'flex';
         }
     }
@@ -165,7 +166,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                     <p>{bookslist[id - 1].body}</p>
                     <div style={{display: 'flex', justifyContent: 'space-around', alignItems: 'center'}}>
                         <div>{rating(bookslist[id - 1].rating)}</div>
-                        <div onClick={() => reviewsRef.current.style.display = 'block'} className='review_links'>{reviews.length} reviews</div>
+                        <div onClick={() => {reviewsRef.current.style.display = 'block'; document.getElementById('needtosignin').style.display = 'none'}} className='review_links'>{reviews.length} reviews</div>
                         <div onClick={reviewsclick} className='review_links'>Leave a review</div>
                     </div>
                     <p>{bookslist[id - 1].price}</p>
