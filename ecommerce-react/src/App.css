@@ -42,6 +42,7 @@ body {
   font-size: 1.5rem;
   width: 50%;
   z-index: 1;
+  border-radius: 20px;
 }
 .popup {
   position: absolute;
@@ -275,6 +276,7 @@ body {
 .highlight_img--container {
   padding: 2.5rem;
   border: 2px solid rgb(206, 150, 240);
+  border-radius: 20px;
 }
 .highlight_icon {
   color: rgb(164, 58, 225);
@@ -646,7 +648,7 @@ option {
   padding: 1.5rem;
   display: none;
   overflow-y: auto;
-  z-index: 1;
+  z-index: 30px;
 }
 #reviews form {
   display: flex;
