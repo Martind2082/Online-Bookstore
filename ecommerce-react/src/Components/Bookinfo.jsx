@@ -24,6 +24,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
 
     const {user, signinwithgoogle} = useContext(Firebasecontext);
     const [reviews, setReviews] = useState([]);
+    const [reviewsrerun, setReviewsrerun] = useState(false);
     const colRef = collection(db, id);
     const q = query(colRef, orderBy('createdAt', 'desc'))
     useEffect(() => {
@@ -35,7 +36,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
             setReviews(reviewscopy);
         });
         return unsub;
-    }, []);
+    }, [reviewsrerun]);
 
     const reviewsclick = () => {
         if (user) {
@@ -186,7 +187,7 @@ const Bookinfo = ({addCart, cartItem, rating}) => {
                 <div className='recommended'>
                     {
                         rarray.map(rbook => {
-                            return <div onClick={() => {navigate(`/books/${rbook.id}`); scrolltop()}} key={rbook.id} className="rbook hover">
+                            return <div onClick={() => {navigate(`/books/${rbook.id}`); scrolltop(); setReviewsrerun(!reviewsrerun)}} key={rbook.id} className="rbook hover">
                                 <img src={rbook.image} />
                                 <p>{rbook.title}</p>
                                 <div>{rating(rbook.rating)}</div>
