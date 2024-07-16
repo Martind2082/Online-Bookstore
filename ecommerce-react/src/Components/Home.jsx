@@ -144,7 +144,7 @@ const Home = ({rating, addCart, cartItem}) => {
                     <div id='code'>Use code "readreadread" for 10% off your purchase!</div>
                     <h1>Deal of the Day!</h1>
                     <p>Get the full Percy Jackson series for $9.99!</p>
-                    <img className='hover' onClick={() => {navigate("/books/9"); scrolltop()}} src="https://cdn.shopify.com/s/files/1/0579/9139/7559/products/age-7-9-percy-jackson-5-books-young-adult-collection-paperback-box-set-by-rick-riordan-3.jpg?v=1629404424"/>
+                    <img className='hover' onClick={() => {navigate("/books/9"); scrolltop()}} src="https://m.media-amazon.com/images/I/817bp+OOARL._AC_UF1000,1000_QL80_.jpg"/>
                     <button style={{zIndex: '1'}} className="button" onClick={() => {
                         if (cartItem.includes(bookslist[8])) {
                             navigate("/cart");
